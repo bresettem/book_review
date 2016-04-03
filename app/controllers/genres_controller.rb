@@ -1,6 +1,5 @@
 class GenresController < ApplicationController
     def index
-       # @genre = Genre.all.order(genre: :asc)
         @fiction_genre = Genre.where(book_type: 'Fiction').order(genre: :asc)
         @nonfiction_genre = Genre.where(book_type: 'Nonfiction').order(genre: :asc)
 
