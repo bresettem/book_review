@@ -1,7 +1,4 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-4">
-            <div class="well">
+
                 <h1>Fiction</h1>
                 <ol>
                     <% @fiction_genre.each do |g| %>
@@ -21,7 +18,3 @@
                     <% end %>
                 </ol>
                 <%= link_to 'New', new_genre_path, class: 'btn btn-primary' %>
-            </div>
-        </div>
-    </div>
-</div>

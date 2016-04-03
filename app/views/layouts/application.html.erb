@@ -25,9 +25,9 @@
 		  <ul class="nav navbar-nav">
 			 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
 			 <li><a href="#">Link</a></li>
-			 <li> <%#= link_to "Add Book", books_path %> </li>
+			 <li> <%= link_to "Add Book", books_path %> </li>
 			 <li> <%= link_to "Genres", genres_path %> </li>
-			 <li> <%#= link_to "Authors", authors_path %> </li>
+			 <li> <%= link_to "Authors", authors_path %> </li>
 		  </ul>
 		  <form class="navbar-form navbar-right" role="search">
 			 <div class="form-group">
@@ -51,7 +51,15 @@
 		</div><!-- /.navbar-collapse -->
 	 </div><!-- /.container-fluid -->
   </nav>
-  <%= yield %>
+  <div class="container">
+	 <div class="row">
+		  <div class="col-md-8 offset-md-4">
+				<div class="well">
+ 					<%= yield %>
+ 				</div>
+		  </div>
+	 </div>
+</div>
 
 </body>
 </html>

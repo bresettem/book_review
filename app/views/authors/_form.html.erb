@@ -1,0 +1,27 @@
+<%= form_for @author, html: { multipart: true } do |a| %>
+  <div class="form-group">
+  			
+		    <div class="form-group">
+  		    <%= a.label :first_name %>
+  		    <%= a.text_field :first_name %>
+		    </div>
+		    <div class="form-group">
+  		    <%= a.label :last_name %>
+  		    <%= a.text_field :last_name %>
+  		  </div>
+  		  <div class="form-group">
+  		    <%= a.label :bio %>
+  		    <%= a.text_field :bio %>
+  		  </div>
+  		  <div class="form-group">
+  		    <%= a.label :other_books %>
+  		    <%= a.text_field :other_books %>
+		    </div>
+		    <%= a.label :avatar %>
+		    <%= a.file_field :avatar %>
+		<%#= a.text_field :genre, class: 'form-control', placeholder: 'Add new Genre'%>
+	</div>
+	<div class="form-group">
+		<%= a.submit "Submit", class: 'btn btn-success' %>
+  </div>
+<% end %>
