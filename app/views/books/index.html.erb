@@ -1,10 +1,57 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-4">
-            <div class="well"
-                <h1>Books</h1>
-                <%= link_to 'Click Me', '#', class: 'btn btn-primary' %>
-            </div>
-        </div>
-    </div>
-</div>
+<h1>Books</h1>
+<% @book.each do |b| %>
+  <%= image_tag b.avatar.url(:thumb) %>
+  <div class="form-group">
+    <h3>Title</h3>
+    <%= b.title %>
+  </div>
+  <div class="form-group">
+    <h3>Author ID</h3>
+    <%= b.authors_id %>
+  </div>
+  <div class="form-group">
+    <h3>Part of Series</h3>
+    <%= b.part_of_series %>
+  </div>
+  <div class="form-group">
+    <h3>Series Name</h3>
+    <%= b.series_name %>
+  </div>
+  <div class="form-group">
+    <h3>Series Number</h3>
+    <%= b.series_number %>
+  </div>
+  <div class="form-group">
+    <h3>Number of Pages</h3>
+    <%= b.pages %>
+  </div>
+  <div class="form-group">
+    <h3>Rating</h3>
+    <%= b.rating %>
+  </div>
+  <div class="form-group">
+    <h3>Publisher</h3>
+    <%= b.publisher %>
+  </div>
+  <div class="form-group">
+    <h3>Published Date</h3>
+    <%= b.published_date %>
+  </div>
+  <div class="form-group">
+    <h3>ISBN10</h3>
+    <%= b.isbn10 %>
+  </div>
+  <div class="form-group">
+    <div>ISBN13</div>
+    <%= b.isbn13 %>
+  </div>
+  <div class="form-group">
+    <h3>GenresID</h3>
+    <%= b.genres_id %>
+  </div>
+  <div class="form-group">
+    <%= b.link %>
+  </div>
+     <%= link_to "View Bio", book_path(b) %> <%= link_to "Edit", edit_book_path(b) %> <%= link_to "Delete", book_path(b), method: :delete %>
+<% end %>
+<%= link_to 'New', new_book_path, class: 'btn btn-primary' %>

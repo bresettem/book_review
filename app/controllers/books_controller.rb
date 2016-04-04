@@ -1,22 +1,37 @@
 class BooksController < ApplicationController
     def index
-        @books = Book.all
+      @book = Book.all
     end
     def new
-       @books = Book.new 
+        @book = Book.new
     end
     def create
-        @books = Book.new(book_params)
-        if @books.save
+        @book = Book.new(book_params)
+        if @book.save
           # Handle a successful save.
-          redirect_to genres_path
+          redirect_to books_path
         else
            render 'new'
         end
     end
-    
-    private
+    def edit
+       @book = Book.find(params[:id]) 
+    end
+    def update
+       @book = Book.find(params[:id])
+       if @book.update_attributes(book_params)
+           redirect_to books_path
+       else
+           render 'edit'
+       end
+    end
+    def destroy
+       @book = Book.find(params[:id])
+       @book.destroy
+       redirect_to books_path
+    end
+  private
     def book_params
-      params.require(:genre).permit(:book_type,:genre)
+      params.require(:book).permit(:title, :authors_id, :part_of_series, :series_name, :series_number, :pages, :rating, :publisher, :published_date, :isbn10, :isbn13, :genres_id, :link, :avatar)
     end
 end
