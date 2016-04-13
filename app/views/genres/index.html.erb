@@ -1,0 +1,20 @@
+
+                <h1>Fiction</h1>
+                <ol>
+                    <% @fiction_genre.each do |g| %>
+                        <li> 
+                            <%= g.genre %> <%= link_to "Edit", edit_genre_path(g) %>  <%= link_to "Delete", genre_path(g), method: :delete %>
+                            
+                        </li>
+                    <% end %>
+                </ol>
+                <h1>Nonfiction</h1>
+                <ol>
+                    <% @nonfiction_genre.each do |g| %>
+                        <li> 
+                            <%= g.genre %> <%= link_to "Edit", edit_genre_path(g) %>  <%= link_to "Delete", genre_path(g), method: :delete %>
+                            
+                        </li>
+                    <% end %>
+                </ol>
+                <%= link_to 'New', new_genre_path, class: 'btn btn-primary' %>
