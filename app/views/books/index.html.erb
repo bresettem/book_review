@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <%#= render 'carousel' %>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-4">
+            <div class="well"
+                <% @allBooks.each do |a| %>
+                    <%= link_to (image_tag a.image_link), book_path(a) %>
+              <% end %>
+              <hr />
+               <%= form_tag books_path, :method => 'get' do %>
+                <p> <%= text_field_tag :search, params[:q], :value => 'King Killer Chronicle' %>
+                    <%= submit_tag "Search" %>
+                 </p>
+                <% end %>
+              <% @results.each_with_index do |result,index| %>
+                  <%= form_for(@books[index]) do |f| %>
+                     <ul>
+                        <li> image_link: <%= image_tag result.image_link %> </li>
+                        <li> title: <%= result.title %> </li>
+                        <li> authors: <%= result.authors %> </li>
+                        <li> published_date: <%= result.published_date %> </li>
+                        <li> description: <%= result.description %> </li>
+                        <li> isbn:  <%= result.isbn  %> </li>
+                        <li> page_count: <%= result.page_count %> </li>
+                        <li> categories: <%= result.categories %> </li>
+                        <li> average_rating: <%= result.average_rating %> </li>
+                        <li> ratings_count: <%= result.ratings_count %> </li>
+                        <li> preview_link: <script>GBS_insertPreviewButtonPopup('ISBN:'+ <%= result.isbn %>);</script></li>
+                        <li> <a href ="<%= result.info_link %>">info_link:</a>  </li>
+                      </ul>
+                          <%= f.hidden_field :image_link, value: result.image_link %>
+                          <%= f.hidden_field :title, value: result.title %>
+                          <%= f.hidden_field :authors, value: result.authors %>
+                          <%= f.hidden_field :published_date, value: result.published_date %>
+                          <%= f.hidden_field :description, value: result.description %>
+                          <%= f.hidden_field :isbn, value: result.isbn %>
+                          <%= f.hidden_field :page_count, value: result.page_count %>
+                          <%= f.hidden_field :categories, value: result.categories %>
+                          <%= f.hidden_field :average_rating, value: result.average_rating %>
+                          <%= f.hidden_field :ratings_count, value: result.ratings_count %>
+                          <%= f.hidden_field :preview_link, value: result.preview_link %>
+                          <%= f.hidden_field :info_link, value: result.info_link %>
+                      <%= f.submit "Submit" %>
+                  <% end %>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>

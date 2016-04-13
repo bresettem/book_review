@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+# Used to connect to Google Books API
+gem 'googlebooks', '0.0.9'
+
 # Install bootstrap 
 gem 'bootstrap-sass', '3.3.6'
 # Use for attachments

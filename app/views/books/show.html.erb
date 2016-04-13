@@ -1,0 +1,23 @@
+<h1>Individual Book</h1>
+<%= image_tag @books.image_link %>
+<h3>Title</h3>
+<%= @books.title %>
+<h3>Authors</h3>
+<%= @books.authors %>
+<h3>Published Date</h3>
+<%= @books.published_date %>
+<h3>Description</h3>
+<%= @books.description %>
+<h3>ISBN</h3>
+<%= @books.isbn %>
+<h3>Pages</h3>
+<%= @books.page_count %>
+<h3>Category</h3>
+<%= @books.categories %>
+<h3>Rating</h3>
+<%= @books.average_rating %>
+<h3>Number of Ratings</h3>
+<%= @books.ratings_count %>
+<h3>Preview Book</h3>
+<!--<script>GBS_insertPreviewButtonPopup('ISBN:'+ <%#= @books.isbn %>);</script>-->
+<%= link_to "View on Google Books", @books.info_link , :target => '_blank' %> 
