@@ -1,63 +1,66 @@
 <div class="container-fluid">
   <div class="row">
-            <div class="col-md-offset-2 col-md-2">
-              <%= image_tag @books.image_link, class: 'thumbnail' %>
-               <p><%= button_to "View on Google Books", @books.info_link , :target => '_blank', class: 'btn btn-success' %></p>
-            </div>
-            <div class="col-md-5 well">
-              <h1><%= @books.title %> by <%= @books.authors %></h1>
-              <ul>
-                <li>
-                  <% if @books.categories.blank? %>
-                    No Genre is available
-                  <% else %>
-                    <%= @books.categories %>
-                  <% end %>
-                </li>
-                <li>
-                  <% if @books.ratings_count.blank? %>
-                    No Ratings available
-                  <% else %>
-                    <%= @books.average_rating %> with 
-                    <% if @books.ratings_count === 1 %>
-                      <%= @books.ratings_count %> rating
-                    <% else %>
-                      <%= @books.ratings_count %> ratings
-                    <% end %>
-                  <% end %>
-                </li>
-                <li>
-                  <% if @books.published_date.blank? %>
-                    No Published Date
-                  <% else %>
-                    Published on <%= @books.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @books.publisher %>
-                  <% end %>
-                </li>
-                <li>
-                  <% if @books.page_count.blank? %>
-                    No pages are available
-                  <% else %>
-                    <%= @books.page_count %> pages
-                  <% end %>
-                </li>
-                <li>
-                  <% if @books.isbn.blank? %>
-                    No ISBN number
-                  <% else %>
-                    <%= @books.isbn %>
-                  <% end %>
-                </li>
-              </ul>
-              <p>
-                <% if @books.description.blank? %>
-                  No description is available
-                <% else %>
-                  <%= @books.description %>
-                <% end %>
-              </p>
-            </div>
-            <div class="col-md-2 col-md-offset-1 well">
-              <h1>Third column</h1>
-            </div>
+    <div class="col-md-1 col-md-offset-1">
+      <%= image_tag @books.image_link, class: 'thumbnail' %>
+       <p><%= button_to "View on Google Books", @books.info_link , :target => '_blank', class: 'btn btn-success' %></p>
     </div>
+    <div class="col-md-5 col-md-offset-1 well">
+      <h1><%= @books.title %> by <%= @books.authors %></h1>
+      <ul>
+        <li>
+          <% if @books.categories.blank? %>
+            No Genre is available
+          <% else %>
+            <%= @books.categories %>
+          <% end %>
+        </li>
+        <li>
+          <% if @books.ratings_count.blank? %>
+            No Ratings available
+          <% else %>
+            <%= @books.average_rating %> with 
+            <% if @books.ratings_count === 1 %>
+              <%= @books.ratings_count %> rating
+            <% else %>
+              <%= @books.ratings_count %> ratings
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if @books.published_date.blank? %>
+            No Published Date
+          <% else %>
+            Published on <%= @books.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @books.publisher %>
+          <% end %>
+        </li>
+        <li>
+          <% if @books.page_count.blank? %>
+            No pages are available
+          <% else %>
+            <%= @books.page_count %> pages
+          <% end %>
+        </li>
+        <li>
+          <% if @books.isbn.blank? %>
+            No ISBN number
+          <% else %>
+            <%= @books.isbn %>
+          <% end %>
+        </li>
+      </ul>
+      <p>
+        <% if @books.description.blank? %>
+          No description is available
+        <% else %>
+          <%= @books.description %>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-md-3 col-md-offset-1 well">
+      <h1>Featured</h1>
+      <% @random.each do |a| %>
+			  <%= link_to (image_tag a.image_link, class: 'img-thumbnail'), book_path(a) %>
+		  <% end %>
+    </div>
+  </div>
 </div>
