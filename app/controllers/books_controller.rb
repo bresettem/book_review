@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   def index
 		@allBooks = Book.all
+		@pages_count = Book.sum(:page_count)
+		@books_count = Book.count
+		num_of_books = 3
+		featured_books(num_of_books)
   end
   def search
   	@results = GoogleBooks.search(params[:search], :filter => 'partial', :count => 10)
@@ -16,7 +20,10 @@ class BooksController < ApplicationController
 		end
 	end
 	def show
-		@books = Book.find(params[:id]) 
+		@books = Book.find(params[:id])
+		num_of_books = 4
+		featured_books(num_of_books)
+		
 	end
 	def edit
 		@book = Book.find(params[:id]) 
@@ -39,5 +46,10 @@ class BooksController < ApplicationController
 			@results.each do |result|
 				@books << Book.new
 			end
+		end
+		def featured_books(num_of_books)
+				# In the Book table, randomly generates an array of unique ids, not including the id in @books
+			max = Book.count
+			@random = Book.find((1..max).to_a.shuffle.take(num_of_books).uniq)
 		end
 end

@@ -1,20 +1,66 @@
-<div class="well">
+
   <% @results.each_with_index do |result,index| %>
                   <%= form_for(@books[index]) do |f| %>
-                     <ul>
-                        <li> image_link: <%= image_tag result.image_link %> </li>
-                        <li> title: <%= result.title %> </li>
-                        <li> authors: <%= result.authors %> </li>
-                        <li> published_date: <%= result.published_date %> by <%= result.publisher %></li>
-                        <li> description: <%= result.description %> </li>
-                        <li> isbn:  <%= result.isbn  %> </li>
-                        <li> page_count: <%= result.page_count %> </li>
-                        <li> categories: <%= result.categories %> </li>
-                        <li> average_rating: <%= result.average_rating %> </li>
-                        <li> ratings_count: <%= result.ratings_count %> </li>
-                        <li> preview_link: <script>GBS_insertPreviewButtonPopup('ISBN:'+ <%= result.isbn %>);</script></li>
-                        <li> <a href ="<%= result.info_link %>">info_link:</a>  </li>
-                      </ul>
+                  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 col-md-offset-1">
+                  
+      </div>
+      <div class="col-md-5 col-md-offset-1 well">
+        <div class="image-container">
+       <%= link_to (image_tag result.image_link, class: 'center-block thumbnail first-image', :style=> 'height:100px; float:left;'), result.info_link, :target => '_blank' %>
+       <%#= link_to (image_tag 'google_preview.gif', class: 'second-image'), result.info_link, :target => '_blank' %>
+      </div>
+                     <p><%= result.title %> by <%= result.authors %></p>
+      <ul>
+        <li>
+          <% if result.categories.blank? %>
+            No Genre is available
+          <% else %>
+            <%= result.categories %>
+          <% end %>
+        </li>
+        <li>
+          <% if result.ratings_count.blank? %>
+            No Ratings available
+          <% else %>
+            <%= result.average_rating %> with 
+            <% if result.ratings_count === 1 %>
+              <%= result.ratings_count %> rating
+            <% else %>
+              <%= result.ratings_count %> ratings
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if result.published_date.blank? %>
+            No Published Date
+          <% else %>
+            Published on <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= result.publisher %>
+          <% end %>
+        </li>
+        <li>
+          <% if result.page_count.blank? %>
+            No pages are available
+          <% else %>
+            <%= result.page_count %> pages
+          <% end %>
+        </li>
+        <li>
+          <% if result.isbn.blank? %>
+            No ISBN number
+          <% else %>
+            <%= result.isbn %>
+          <% end %>
+        </li>
+      </ul>
+      <p>
+        <% if result.description.blank? %>
+          No description is available
+        <% else %>
+          <%= result.description %>
+        <% end %>
+      </p>
                           <%= f.hidden_field :image_link, value: result.image_link %>
                           <%= f.hidden_field :title, value: result.title %>
                           <%= f.hidden_field :authors, value: result.authors %>
@@ -29,6 +75,8 @@
                           <%= f.hidden_field :preview_link, value: result.preview_link %>
                           <%= f.hidden_field :info_link, value: result.info_link %>
                       <%= f.submit "Submit" %>
+                      </div>
+                      </div>
+</div>
                   <% end %>
               <% end %>
-</div>

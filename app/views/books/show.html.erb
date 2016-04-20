@@ -1,8 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
-      <%= image_tag @books.image_link, class: 'thumbnail' %>
-       <p><%= button_to "View on Google Books", @books.info_link , :target => '_blank', class: 'btn btn-success' %></p>
+      <div class="image-container">
+       <%= link_to (image_tag @books.image_link, class: 'center-block thumbnail first-image'), @books.info_link, :target => '_blank' %>
+       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @books.info_link, :target => '_blank' %>
+      </div>
     </div>
     <div class="col-md-5 col-md-offset-1 well">
       <h1><%= @books.title %> by <%= @books.authors %></h1>
@@ -56,10 +58,10 @@
         <% end %>
       </p>
     </div>
-    <div class="col-md-3 col-md-offset-1 well">
-      <h1>Featured</h1>
+    <div class="col-md-3 col-xs-offset-1">
+      <h1 class="text-center featured">Featured</h1>
       <% @random.each do |a| %>
-			  <%= link_to (image_tag a.image_link, class: 'img-thumbnail'), book_path(a) %>
+			  <%= link_to (image_tag a.image_link, class: 'img-thumbnail image-thumbnail'), book_path(a) %>
 		  <% end %>
     </div>
   </div>
