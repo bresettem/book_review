@@ -28,18 +28,18 @@
             <% end %>
           <% end %>
         </li>
+         <li>
+          <% if @books.page_count.blank? %>
+            No pages are available
+          <% else %>
+            <%= @books.page_count %> pages
+          <% end %>
+        </li>
         <li>
           <% if @books.published_date.blank? %>
             No Published Date
           <% else %>
             Published on <%= @books.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @books.publisher %>
-          <% end %>
-        </li>
-        <li>
-          <% if @books.page_count.blank? %>
-            No pages are available
-          <% else %>
-            <%= @books.page_count %> pages
           <% end %>
         </li>
         <li>

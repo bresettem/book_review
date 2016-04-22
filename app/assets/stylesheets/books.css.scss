@@ -39,10 +39,16 @@ body {
    bottom: 0px; 
    left: 0px; 
    z-index: 3;
-  opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 .second-image:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+#search ul li {
+  text-decoration: none;
+}
+.clear {
+  clear:both;
 }
