@@ -14,7 +14,10 @@
 ActiveRecord::Schema.define(version: 20160413231150) do
 
   create_table "books", force: :cascade do |t|
-    t.string   "image_link"
+    t.string   "image_link_file_name"
+    t.string   "image_link_content_type"
+    t.integer  "image_link_file_size"
+    t.datetime "image_link_updated_at"
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 20160413231150) do
     t.integer  "ratings_count"
     t.string   "preview_link"
     t.string   "info_link"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

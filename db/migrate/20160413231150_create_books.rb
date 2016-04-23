@@ -1,7 +1,7 @@
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
-      t.string :image_link
+      t.attachment :image_link
       t.string :title
       t.string :authors
       t.string :publisher
@@ -14,7 +14,6 @@ class CreateBooks < ActiveRecord::Migration
       t.integer :ratings_count
       t.string :preview_link
       t.string :info_link
-      t.timestamps null: false
       t.timestamps null: false
     end
   end
