@@ -11,13 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413231150) do
+ActiveRecord::Schema.define(version: 20160425233950) do
 
-  create_table "books", force: :cascade do |t|
+  create_table "authors", force: :cascade do |t|
+    t.string   "authors"
+    t.string   "bio"
     t.string   "image_link_file_name"
     t.string   "image_link_content_type"
     t.integer  "image_link_file_size"
     t.datetime "image_link_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "book_authors", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "book_categories", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "book_genres", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -30,8 +56,24 @@ ActiveRecord::Schema.define(version: 20160413231150) do
     t.integer  "ratings_count"
     t.string   "preview_link"
     t.string   "info_link"
+    t.string   "image_link_file_name"
+    t.string   "image_link_content_type"
+    t.integer  "image_link_file_size"
+    t.datetime "image_link_updated_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "categories"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "categories"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

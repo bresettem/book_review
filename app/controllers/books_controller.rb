@@ -5,6 +5,8 @@ class BooksController < ApplicationController
 		@books_count = Book.count
 		num_of_books = 3
 		featured_books(num_of_books)
+		
+
   end
   def search
   	@results = GoogleBooks.search(params[:search], :filter => 'partial', :count => 10)

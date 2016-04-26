@@ -1,0 +1,14 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-3 well">
+				<h1>Category</h1>
+				<ol>
+				<% @categories.each do |c| %>
+						<li>
+							<%= c.categories %>
+						</li>
+				<% end %>
+				</ol>
+		</div>
+	</div>
+</div>

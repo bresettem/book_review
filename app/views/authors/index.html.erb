@@ -1,12 +1,14 @@
-<h1>Authors</h1>
-<% @author.each do |a| %>
-  <div class="well">
-    <h3>Name</h3>
-    <p> <%= a.first_name + " " + a.last_name %> </p>
-    <h3>Avatar</h3>
-     <%= image_tag a.avatar.url(:thumb) %>
-     <%= link_to "View Bio", author_path(a) %> <%= link_to "Edit", edit_author_path(a) %> <%= link_to "Delete", author_path(a), method: :delete %>
-  </div>
-    
-<% end %>
-<%= link_to 'New', new_author_path, class: 'btn btn-primary' %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-3 well">
+				<h1>Authors</h1>
+				<ol>
+				<% @authors.each do |c| %>
+						<li>
+							<%= c.authors %>
+						</li>
+				<% end %>
+				</ol>
+		</div>
+	</div>
+</div>
