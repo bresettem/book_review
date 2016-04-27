@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require_tree .
 // Bootstrap JS
-//= require jquery
 //= require bootstrap-sprockets
+//= require readmore
+//= require books

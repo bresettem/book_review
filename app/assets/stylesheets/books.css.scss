@@ -1,0 +1,54 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/* add a little bottom space under the images */
+body {
+  padding-top:70px;
+  background: rgba(0,0,0,1);
+  background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,132,1) 49%, rgba(0,0,129,1) 50%, rgba(0,0,0,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,1)), color-stop(49%, rgba(0,0,132,1)), color-stop(50%, rgba(0,0,129,1)), color-stop(100%, rgba(0,0,0,1)));
+  background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,132,1) 49%, rgba(0,0,129,1) 50%, rgba(0,0,0,1) 100%);
+  background: -o-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,132,1) 49%, rgba(0,0,129,1) 50%, rgba(0,0,0,1) 100%);
+  background: -ms-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,132,1) 49%, rgba(0,0,129,1) 50%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,132,1) 49%, rgba(0,0,129,1) 50%, rgba(0,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1 );
+}
+.center-block.img-thumbnail,
+.img-thumbnail {
+  height:195px;
+  width:auto; 
+  margin-bottom: 15px;
+}
+
+.featured {
+  margin-left: 1em;
+  color:white;
+}
+.text-center.featured {
+  padding-right:2.5em;
+  color:white;
+}
+.image-container {
+  position:relative;
+}
+.center-block.thumbnail.first-image {
+  z-index:1;
+}
+.second-image {
+   position:absolute; 
+   bottom: 0px; 
+   left: 0px; 
+   z-index: 3;
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+.second-image:hover {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+#search ul li {
+  text-decoration: none;
+}
+.clear {
+  clear:both;
+}

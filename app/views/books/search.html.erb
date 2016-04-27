@@ -1,0 +1,73 @@
+<% @results.each_with_index do |result,index| %>
+  <%= form_for(@books[index]) do |f| %>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-8 col-md-offset-2 well">
+          <p><%= result.title %> <% if !result.authors.blank? %> by <%= result.authors %> <% end %>
+          
+          </p>
+          <div class="col-md-3">   
+          <div class="image-container">
+           <%= link_to (image_tag result.image_link, class: 'center-block first-image', :style=> 'float:left;'), result.info_link, :target => '_blank' %>
+           <%#= link_to (image_tag 'google_preview.gif', class: 'second-image'), result.info_link, :target => '_blank' %>
+          </div>
+       
+      <div id="search">
+        
+                
+            <% if result.ratings_count.blank? %>
+             0 ratings
+            <% else %>
+              <%= result.average_rating %> with 
+              <% if result.ratings_count === 1 %>
+                <%= result.ratings_count %> rating<br />
+              <% else %>
+                <%= result.ratings_count %> ratings<br />
+              <% end %>
+            <% end %>
+
+               <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
+          <% if !result.page_count %>
+              <%= result.page_count %> pages
+          <% end %>
+      </div>
+    </div>
+    <div class="col-md-7">
+        <p style="">
+          <% if result.description.blank? %>
+            No description is available
+          <% else %>
+            
+            <article>
+              <%= result.description.html_safe %>
+            </article>
+          <% end %>
+        </p>
+        </div>
+        <%= f.hidden_field :image_link, value: result.image_link %>
+        <%= f.hidden_field :title, value: result.title %>
+        <%= f.hidden_field :authors, value: result.authors %>
+        <%= f.hidden_field :publisher, value: result.publisher %>
+        <%= f.hidden_field :published_date, value: result.published_date %>
+        <%= f.hidden_field :description, value: result.description %>
+        <%= f.hidden_field :isbn, value: result.isbn %>
+        <%= f.hidden_field :page_count, value: result.page_count %>
+        <%#= f.hidden_field :categories, value: result.categories %>
+        <%= f.hidden_field :average_rating, value: result.average_rating %>
+        <%= f.hidden_field :ratings_count, value: result.ratings_count %>
+        <%= f.hidden_field :preview_link, value: result.preview_link %>
+        <%= f.hidden_field :info_link, value: result.info_link %>
+        <%= f.submit "Add Book" %>
+      </div>
+     </div>
+    </div>
+  <% end %>
+<% end %>
+<script>
+  $(document).ready(function() {
+    $('article').readmore({
+        collapsedHeight: 100
+      });
+  });
+</script>
