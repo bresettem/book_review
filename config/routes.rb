@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   get '/search' => 'books#search'
-  resources :books, :categories, :authors
-  root 'books#index'
+  get '/authors' => 'authors#index'
+  get 'categories' => 'categories#index'
+  resources :books, :only => [:index, :show]
+  root to: 'books#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

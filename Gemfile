@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'googlebooks', '0.0.9'
 # Used for adding read more
 gem 'readmorejs-rails', '0.0.12'
+# Use for profiles
+gem 'devise', '4.0.1'
 # Used for adding book covers
 gem 'paperclip', '4.3.6'
 # Install bootstrap 

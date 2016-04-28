@@ -16,8 +16,10 @@ class BooksController < ApplicationController
 		@books = Book.new(book_params)
 		if @books.save
 			# Handle a successful save.
+			flash[:success] = 'Books has been added.'
 			redirect_to books_path
 		else
+			flash[:danger] = 'Error book has not been added. Book duplicate?'
 			 render books_path
 		end
 	end
@@ -33,6 +35,7 @@ class BooksController < ApplicationController
 		def update
 			 @book = Book.find(params[:id])
 			 if @book.update_attributes(book_params)
+			 		flash[:success] = 'Book has been updated.'
 					 redirect_to books_path
 			 else
 					 render 'edit'
