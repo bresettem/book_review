@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   get '/search' => 'books#search'
   get '/authors' => 'authors#index'
   get 'categories' => 'categories#index'
