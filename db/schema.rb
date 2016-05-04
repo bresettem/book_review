@@ -24,13 +24,6 @@ ActiveRecord::Schema.define(version: 20160427022516) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "book_authors", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "book_categories", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "category"
@@ -38,12 +31,8 @@ ActiveRecord::Schema.define(version: 20160427022516) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
+    t.string   "book_id"
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -65,12 +54,6 @@ ActiveRecord::Schema.define(version: 20160427022516) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "categories"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genres", force: :cascade do |t|
     t.string   "categories"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

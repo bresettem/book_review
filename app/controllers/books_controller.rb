@@ -8,7 +8,7 @@ class BooksController < ApplicationController
 		featured_books(num_of_books)
   end
   def search
-  	@results = GoogleBooks.search(params[:search], :filter => 'partial', :count => 10)
+  	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10)
   	show_form
   end
 	def create
@@ -42,7 +42,7 @@ class BooksController < ApplicationController
 		
 	private
 		def book_params
-			params.require(:book).permit(:image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
+			params.require(:book).permit(:book_id, :image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
 		end
 		def show_form
 			@books = []

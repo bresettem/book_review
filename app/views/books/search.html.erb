@@ -45,6 +45,7 @@
           <% end %>
         </p>
         </div>
+        <%= f.hidden_field :book_id, value: result.id %>
         <%= f.hidden_field :image_link, value: result.image_link %>
         <%= f.hidden_field :title, value: result.title %>
         <%= f.hidden_field :authors, value: result.authors %>
@@ -53,7 +54,7 @@
         <%= f.hidden_field :description, value: result.description %>
         <%= f.hidden_field :isbn, value: result.isbn %>
         <%= f.hidden_field :page_count, value: result.page_count %>
-        <%#= f.hidden_field :categories, value: result.categories %>
+        <%= f.hidden_field :categories, value: result.categories %>
         <%= f.hidden_field :average_rating, value: result.average_rating %>
         <%= f.hidden_field :ratings_count, value: result.ratings_count %>
         <%= f.hidden_field :preview_link, value: result.preview_link %>
