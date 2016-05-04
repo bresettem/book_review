@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
   get '/search' => 'books#search'
   get '/authors' => 'authors#index'
   get 'categories' => 'categories#index'
-  resources :books, :only => [:index, :show]
+  resources :books
   root to: 'books#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

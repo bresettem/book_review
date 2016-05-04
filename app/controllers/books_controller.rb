@@ -1,12 +1,11 @@
 class BooksController < ApplicationController
+	before_action :authenticate_user!, :except => [:show, :index, :search]
   def index
 		@allBooks = Book.all
 		@pages_count = Book.sum(:page_count)
 		@books_count = Book.count
 		num_of_books = 3
 		featured_books(num_of_books)
-		
-
   end
   def search
   	@results = GoogleBooks.search(params[:search], :filter => 'partial', :count => 10)
@@ -16,18 +15,17 @@ class BooksController < ApplicationController
 		@books = Book.new(book_params)
 		if @books.save
 			# Handle a successful save.
-			flash[:success] = 'Books has been added.'
+			flash[:success] = 'Book has been added.'
 			redirect_to books_path
 		else
-			flash[:danger] = 'Error book has not been added. Book duplicate?'
-			 render books_path
+			flash[:danger] = 'Book has not been added. Book duplicate?'
+			 redirect_to books_path
 		end
 	end
 	def show
 		@books = Book.find(params[:id])
 		num_of_books = 4
 		featured_books(num_of_books)
-		
 	end
 	def edit
 		@book = Book.find(params[:id]) 
@@ -38,7 +36,7 @@ class BooksController < ApplicationController
 			 		flash[:success] = 'Book has been updated.'
 					 redirect_to books_path
 			 else
-					 render 'edit'
+					 redirect_to 'edit'
 			 end
 		end
 		
