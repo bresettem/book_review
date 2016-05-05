@@ -1,31 +1,31 @@
 class BooksController < ApplicationController
+	before_action :authenticate_user!, :except => [:show, :index, :search]
   def index
 		@allBooks = Book.all
 		@pages_count = Book.sum(:page_count)
 		@books_count = Book.count
 		num_of_books = 3
 		featured_books(num_of_books)
-		
-
   end
   def search
-  	@results = GoogleBooks.search(params[:search], :filter => 'partial', :count => 10)
+  	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10)
   	show_form
   end
 	def create
 		@books = Book.new(book_params)
 		if @books.save
 			# Handle a successful save.
+			flash[:success] = 'Book has been added.'
 			redirect_to books_path
 		else
-			 render books_path
+			flash[:danger] = 'Book has not been added. Book duplicate?'
+			 redirect_to books_path
 		end
 	end
 	def show
 		@books = Book.find(params[:id])
 		num_of_books = 4
 		featured_books(num_of_books)
-		
 	end
 	def edit
 		@book = Book.find(params[:id]) 
@@ -33,15 +33,16 @@ class BooksController < ApplicationController
 		def update
 			 @book = Book.find(params[:id])
 			 if @book.update_attributes(book_params)
+			 		flash[:success] = 'Book has been updated.'
 					 redirect_to books_path
 			 else
-					 render 'edit'
+					 redirect_to 'edit'
 			 end
 		end
 		
 	private
 		def book_params
-			params.require(:book).permit(:image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
+			params.require(:book).permit(:book_id, :image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
 		end
 		def show_form
 			@books = []

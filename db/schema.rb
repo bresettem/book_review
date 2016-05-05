@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425233950) do
+ActiveRecord::Schema.define(version: 20160427022516) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "authors"
@@ -24,13 +24,6 @@ ActiveRecord::Schema.define(version: 20160425233950) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "book_authors", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "book_categories", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "category"
@@ -38,12 +31,8 @@ ActiveRecord::Schema.define(version: 20160425233950) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
+    t.string   "book_id"
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -70,10 +59,22 @@ ActiveRecord::Schema.define(version: 20160425233950) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string   "categories"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
