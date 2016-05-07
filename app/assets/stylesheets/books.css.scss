@@ -19,7 +19,9 @@ body {
   width:auto; 
   margin-bottom: 15px;
 }
-
+.thumbnail.custom {
+ margin-bottom: 0px;
+}
 .featured {
   margin-left: 1em;
   color:white;
@@ -64,4 +66,8 @@ body {
 }
 hr {
     border-top: 1px solid #000000 !important
+}
+.btn.btn-success.middle {
+  margin: auto;
+  display: block;
 }

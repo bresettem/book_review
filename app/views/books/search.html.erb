@@ -2,38 +2,33 @@
   <%= form_for(@books[index]) do |f| %>
     <div class="container-fluid">
       <div class="row">
-
-        <div class="col-md-8 col-md-offset-2 well">
-          <p><%= result.title %> <% if !result.authors.blank? %> by <%= result.authors %> <% end %>
-          
-          </p>
-          <div class="col-md-3">   
-          <div class="image-container">
-           <%= link_to (image_tag result.image_link, class: 'center-block first-image', :style=> 'float:left;'), result.info_link, :target => '_blank' %>
-           <%#= link_to (image_tag 'google_preview.gif', class: 'second-image'), result.info_link, :target => '_blank' %>
-          </div>
-       
-      <div id="search">
-        
-                
-            <% if result.ratings_count.blank? %>
-             0 ratings
-            <% else %>
-              <%= result.average_rating %> with 
-              <% if result.ratings_count === 1 %>
-                <%= result.ratings_count %> rating<br />
+        <div class="col-xs-7 col-xs-offset-2 well">
+          <div class="col-xs-4">   
+              <div class="thumbnail custom">
+               <%= link_to (image_tag result.image_link, :id=>'hi', class: '', :style=> ''), result.info_link, :target => '_blank' %>
+              <div class="caption">
+                <% if result.ratings_count.blank? %>
+                  0 ratings
+                <% else %>
+                  <%= result.average_rating %> with 
+                  <% if result.ratings_count === 1 %>
+                    <%= result.ratings_count %> rating<br />
+                  <% else %>
+                    <%= result.ratings_count %> ratings<br />
+                  <% end %>
+                <% end %>
+                   <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
+              <% if result.page_count.blank? %>
+                0
               <% else %>
-                <%= result.ratings_count %> ratings<br />
-              <% end %>
-            <% end %>
-
-               <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
-          <% if !result.page_count %>
-              <%= result.page_count %> pages
-          <% end %>
-      </div>
-    </div>
-    <div class="col-md-7">
+                  <%= result.page_count %>
+              <% end %> pages
+              <p><%= f.submit "Add Book", class: 'btn btn-success middle' %></p>
+              </div>
+            </div>
+        </div>
+    <div class="col-xs-8">
+      <h4><%= result.title %> <% if !result.authors.blank? %> by <%= result.authors %> <% end %></h4>
         <p style="">
           <% if result.description.blank? %>
             No description is available
@@ -59,7 +54,6 @@
         <%= f.hidden_field :ratings_count, value: result.ratings_count %>
         <%= f.hidden_field :preview_link, value: result.preview_link %>
         <%= f.hidden_field :info_link, value: result.info_link %>
-        <%= f.submit "Add Book" %>
       </div>
      </div>
     </div>
