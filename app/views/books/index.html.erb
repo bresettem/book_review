@@ -1,7 +1,11 @@
 <div class="container">
 	<div class="jumbotron">
 		<div class="row">
-			<h1>Welcome!</h1>
+			<h1>Welcome!
+				<% if user_signed_in? %>
+					<%= current_user.first_name %> <%= current_user.last_name %>
+				<% end %>
+			</h1>
 			<p>There have been <%= number_with_delimiter(@books_count) %> books added with <%= number_with_delimiter(@pages_count) %> pages.</p>
 		</div>
 	</div>
