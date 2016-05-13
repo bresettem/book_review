@@ -9,7 +9,11 @@ class BooksController < ApplicationController
   end
   def search
   	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10)
-  	show_form
+  	if @results.total_items === 0
+  		flash.now[:danger] = "Did not return any search results."
+  	else
+  		show_form
+  	end
   end
 	def create
 		@books = Book.new(book_params)
