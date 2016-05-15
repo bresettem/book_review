@@ -28,8 +28,8 @@ class BooksController < ApplicationController
 	end
 	def show
 		@books = Book.find(params[:id])
-		num_of_books = 4
-		featured_books(num_of_books)
+		books = @books
+		featured_books(books)
 	end
 	def edit
 		@book = Book.find(params[:id]) 
@@ -54,9 +54,11 @@ class BooksController < ApplicationController
 				@books << Book.new
 			end
 		end
-		def featured_books(num_of_books)
-				# In the Book table, randomly generates an array of unique ids, not including the id in @books
+		def featured_books(books)
+			# Is an Active Record query where it finds all ids in the table except for the id of the book that we are already
+			# on in the show page. It then only shows a select number of random books to display.
 			max = Book.count
-			@random = Book.find((1..max).to_a.shuffle.take(num_of_books).uniq)
+			num_of_books = 4
+			@random = Book.where(id: [1..max]).where.not(id: books).shuffle.take(num_of_books)
 		end
 end
