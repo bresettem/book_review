@@ -1,8 +1,8 @@
-class Posts < ActiveRecord::Migration
+class CreateReviews < ActiveRecord::Migration
   def change
-    create_table :posts do |t|
+    create_table :reviews do |t|
       t.string :review
-      
+
       t.timestamps null: false
     end
   end

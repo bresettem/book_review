@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offest-2">
+      <h1>All Reviews</h1>
+      <ol>
+        <% @review.each do |po| %>
+          <div class="well">
+            <li>
+            <strong>Posted by: <%= po.user.user_name %></strong> <br /> <%= po.review %> 
+            <% if po.user.id == current_user.id %>
+              <%= link_to "Edit", edit_review_path(po) %> <%= link_to "Delete", po, method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+            <% end %>
+          </div>
+        <% end %>
+        <%= link_to "New", new_review_path, class: 'btn btn-success' %>
+      </ol>
+    </div>
+  </div>
+</div>
