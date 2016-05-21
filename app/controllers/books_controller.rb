@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!, :except => [:show, :index, :search]
+	before_action :set_book, only: [:show, :edit, :update, :destroy]
+	before_action :owned_book, only: [:edit, :update, :destroy]
   def index
 		@allBooks = Book.all
 		@pages_count = Book.sum(:page_count)
@@ -15,9 +17,12 @@ class BooksController < ApplicationController
   		show_form
   	end
   end
+	def new
+		@book = current_user.books.build
+	end
 	def create
-		@books = Book.new(book_params)
-		if @books.save
+		@book = current_user.books.build(book_params)
+		if @book.save
 			# Handle a successful save.
 			flash[:success] = 'Book has been added.'
 			redirect_to books_path
@@ -27,31 +32,42 @@ class BooksController < ApplicationController
 		end
 	end
 	def show
-		@books = Book.find(params[:id])
-		books = @books
+		books = @book
 		featured_books(books)
 	end
 	def edit
-		@book = Book.find(params[:id]) 
 	end
-		def update
-			 @book = Book.find(params[:id])
-			 if @book.update_attributes(book_params)
-			 		flash[:success] = 'Book has been updated.'
-					 redirect_to books_path
-			 else
-					 redirect_to 'edit'
-			 end
-		end
-		
+	def update
+		 if @book.update_attributes(book_params)
+		 		flash[:success] = 'Book has been updated.'
+				 redirect_to books_path
+		 else
+				 redirect_to 'edit'
+		 end
+	end
+	def destroy
+		@book.destroy
+		flash.now[:danger] = "Book has successfully been deleted"
+		redirect_to books_path
+	end
 	private
 		def book_params
 			params.require(:book).permit(:book_id, :image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
 		end
+		def set_book
+      @book = Book.find(params[:id])
+		end
 		def show_form
-			@books = []
+			@book = []
 			@results.each do |result|
-				@books << Book.new
+				@book << Book.new
+			end
+		end
+		
+		def owned_book
+			unless current_user == @book.user
+				flash[:danger] = "Error! The book does not belong to you!"
+				redirect_to books_path
 			end
 		end
 		def featured_books(books)

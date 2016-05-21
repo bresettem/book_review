@@ -4,6 +4,7 @@
 			<h1>Welcome!
 				<% if user_signed_in? %>
 					<%= current_user.first_name %> <%= current_user.last_name %>
+					<%= link_to "New Book", new_book_path, class: 'btn btn-primary' %>
 				<% end %>
 			</h1>
 			<p>There have been <%= number_with_delimiter(@books_count) %> books added with <%= number_with_delimiter(@pages_count) %> pages.</p>
@@ -15,6 +16,12 @@
 		<% @allBooks.each do |a| %>
 			<div class="col-xs-2 center-block">
 				<%= link_to (image_tag a.image_link(:medium), class: 'center-block img-thumbnail'), book_path(a) %>
+				<div class="caption well well-sm">
+					<strong>Posted by: </strong><%= a.user.user_name %>
+						<% if user_signed_in? && (a.user.id == current_user.id) %>
+	          	<%= link_to "Edit", edit_book_path(a) %> <%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+	          <% end %>
+				</div>
 			</div>
 		<% end %>
 	</div>

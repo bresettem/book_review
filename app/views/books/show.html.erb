@@ -2,59 +2,59 @@
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
       <div class="image-container">
-       <%= link_to (image_tag @books.image_link, class: 'center-block thumbnail first-image'), @books.info_link, :target => '_blank' %>
-       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @books.info_link, :target => '_blank' %>
+       <%= link_to (image_tag @book.image_link, class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank' %>
+       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @book.info_link, :target => '_blank' %>
       </div>
     </div>
     <div class="col-md-5 col-md-offset-1 well">
-      <h1><%= @books.title %> by <%= @books.authors %></h1>
+      <h1><%= @book.title %> by <%= @book.authors %></h1>
       <ul>
         <li>
-          <% if @books.categories.blank? %>
+          <% if @book.categories.blank? %>
             No Genre is available
           <% else %>
-            <%= @books.categories %>
+            <%= @book.categories %>
           <% end %>
         </li>
         <li>
-          <% if @books.ratings_count.blank? %>
+          <% if @book.ratings_count.blank? %>
             No Ratings available
           <% else %>
-            <%= @books.average_rating %> with 
-            <% if @books.ratings_count === 1 %>
-              <%= @books.ratings_count %> rating
+            <%= @book.average_rating %> with 
+            <% if @book.ratings_count === 1 %>
+              <%= @book.ratings_count %> rating
             <% else %>
-              <%= @books.ratings_count %> ratings
+              <%= @book.ratings_count %> ratings
             <% end %>
           <% end %>
         </li>
          <li>
-          <% if @books.page_count.blank? %>
+          <% if @book.page_count.blank? %>
             No pages are available
           <% else %>
-            <%= @books.page_count %> pages
+            <%= @book.page_count %> pages
           <% end %>
         </li>
         <li>
-          <% if @books.published_date.blank? %>
+          <% if @book.published_date.blank? %>
             No Published Date
           <% else %>
-            Published on <%= @books.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @books.publisher %>
+            Published on <%= @book.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @book.publisher %>
           <% end %>
         </li>
         <li>
-          <% if @books.isbn.blank? %>
+          <% if @book.isbn.blank? %>
             No ISBN number
           <% else %>
-            <%= @books.isbn %>
+            <%= @book.isbn %>
           <% end %>
         </li>
       </ul>
       <p>
-        <% if @books.description.blank? %>
+        <% if @book.description.blank? %>
           No description is available
         <% else %>
-          <%= @books.description %>
+          <%= @book.description %>
         <% end %>
       </p>
     </div>
