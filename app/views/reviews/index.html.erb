@@ -3,16 +3,18 @@
     <div class="col-xs-10 col-xs-offest-2">
       <h1>All Reviews</h1>
       <ol>
-        <% @review.each do |po| %>
+        <% @reviews.each do |r| %>
           <div class="well">
             <li>
-            <strong>Posted by: <%= po.user.user_name %></strong> <br /> <%= po.review %> 
-            <% if po.user.id == current_user.id %>
-              <%= link_to "Edit", edit_review_path(po) %> <%= link_to "Delete", po, method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+            <strong>Posted by: <%= r.user.user_name %></strong> <%=  time_ago_in_words(r.updated_at) %> ago <br /> 
+            <p><%= r.review %></p>
+            <% if r.user.id == current_user.id %>
+              <%= link_to "Edit", edit_book_review_path(@book, r) %> <%= link_to "Delete", [@book, r], method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
             <% end %>
           </div>
         <% end %>
-        <%= link_to "New", new_review_path, class: 'btn btn-success' %>
+        <%= link_to "New", new_book_review_path(@book), class: 'btn btn-success' %>
+        <%= link_to "Back", books_path(@book), class: 'btn btn-primary' %>
       </ol>
     </div>
   </div>

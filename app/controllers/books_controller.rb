@@ -38,6 +38,7 @@ class BooksController < ApplicationController
 	def show
 		books = @book
 		featured_books(books)
+		@review = Review.new
 	end
 	
 	def edit
@@ -60,7 +61,7 @@ class BooksController < ApplicationController
 	
 	private
 		def book_params
-			params.require(:book).permit(:book_id, :image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
+			params.require(:book).permit(:books_id, :image_link, :title, :authors, :publisher, :published_date, :description, :isbn, :page_count, :categories, :average_rating, :ratings_count, :preview_link, :info_link)
 		end
 		
 		def set_book

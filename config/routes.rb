@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   get '/search' => 'books#search'
   get '/authors' => 'authors#index'
   get 'categories' => 'categories#index'
-  resources :books, :reviews
+  #resources :books do
+  #  resources :reviews
+  #end
+  resources :books do 
+    resources :reviews
+  end
   root to: 'books#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

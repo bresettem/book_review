@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521213213) do
+ActiveRecord::Schema.define(version: 20160522032248) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "authors"
@@ -24,15 +24,8 @@ ActiveRecord::Schema.define(version: 20160521213213) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "book_categories", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
-    t.string   "book_id"
+    t.string   "books_id"
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -56,19 +49,15 @@ ActiveRecord::Schema.define(version: 20160521213213) do
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "categories"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
-    t.string   "review"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.text     "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
 
+  add_index "reviews", ["book_id"], name: "index_reviews_on_book_id"
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "users", force: :cascade do |t|

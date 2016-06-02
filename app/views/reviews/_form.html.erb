@@ -1,13 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offest-2 well">
-      <%= form_for @review do |f| %>
-        <div class="form-group">
-          <%= f.label :review %>
-          <%= f.text_area :review, class: 'form-control' %>
-        </div>
-        <%= f.submit "Submit", class: 'btn btn-primary' %>
-      <% end %>
-    </div>
+<%= form_for ([@book, @review]) do |f| %>
+  <div class="form-group">
+    <%= f.label :review, style: 'color:white' %>
+    <%= f.text_area :review, class: 'form-control' %>
   </div>
-</div>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
+<% end %>
+<br />
