@@ -9,8 +9,8 @@ gem 'devise', '4.0.1'
 gem 'paperclip', '4.3.6'
 # Install bootstrap 
 gem 'bootstrap-sass', '3.3.6'
-# Use for attachments
-#gem 'paperclip', '4.3.6'
+# Use for icons
+gem 'font-awesome-rails', '4.6.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'
 

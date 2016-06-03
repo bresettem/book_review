@@ -1,51 +1,24 @@
 <% @results.each_with_index do |result,index| %>
-  <%= form_for(@books[index]) do |f| %>
+  <%= form_for(@book[index]) do |f| %>
     <div class="container-fluid">
       <div class="row">
-
-        <div class="col-md-8 col-md-offset-2 well">
-          <p><%= result.title %> <% if !result.authors.blank? %> by <%= result.authors %> <% end %>
-          
-          </p>
-          <div class="col-md-3">   
-          <div class="image-container">
-           <%= link_to (image_tag result.image_link, class: 'center-block first-image', :style=> 'float:left;'), result.info_link, :target => '_blank' %>
-           <%#= link_to (image_tag 'google_preview.gif', class: 'second-image'), result.info_link, :target => '_blank' %>
+        <div class="col-xs-7 col-xs-offset-2 well well-sm">
+          <div class="media">   
+            <div class="media-left">
+              <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %>
+              <p>
+                <%= ratings_count(result) %>
+                <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
+                <%= page_count(result) %> pages
+              </p>
+              <%= f.submit "Add Book", class: 'btn btn-success middle' %>
           </div>
-       
-      <div id="search">
-        
-                
-            <% if result.ratings_count.blank? %>
-             0 ratings
-            <% else %>
-              <%= result.average_rating %> with 
-              <% if result.ratings_count === 1 %>
-                <%= result.ratings_count %> rating<br />
-              <% else %>
-                <%= result.ratings_count %> ratings<br />
-              <% end %>
-            <% end %>
-
-               <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
-          <% if !result.page_count %>
-              <%= result.page_count %> pages
-          <% end %>
-      </div>
-    </div>
-    <div class="col-md-7">
-        <p style="">
-          <% if result.description.blank? %>
-            No description is available
-          <% else %>
-            
-            <article>
-              <%= result.description.html_safe %>
-            </article>
-          <% end %>
-        </p>
+          <div class="media-body">
+            <h4><%= result.title %> <%= authors(result) %> </h4>
+            <article><%= description(result) %></article>
+          </div>
         </div>
-        <%= f.hidden_field :book_id, value: result.id %>
+        <%= f.hidden_field :books_id, value: result.id %>
         <%= f.hidden_field :image_link, value: result.image_link %>
         <%= f.hidden_field :title, value: result.title %>
         <%= f.hidden_field :authors, value: result.authors %>
@@ -59,16 +32,15 @@
         <%= f.hidden_field :ratings_count, value: result.ratings_count %>
         <%= f.hidden_field :preview_link, value: result.preview_link %>
         <%= f.hidden_field :info_link, value: result.info_link %>
-        <%= f.submit "Add Book" %>
       </div>
      </div>
     </div>
   <% end %>
 <% end %>
 <script>
-  $(document).ready(function() {
-    $('article').readmore({
-        collapsedHeight: 100
-      });
+$(document).ready(function() {
+  $('article').readmore({
+    collapsedHeight: 200
   });
+});
 </script>

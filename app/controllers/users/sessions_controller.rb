@@ -14,7 +14,9 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
    def destroy
      super
-     flash[:danger] = 'Error book has not been added. Book duplicate?'
+     if !destroy_user_session_path
+      flash[:danger] = 'Error book has not been added. Book duplicate?'
+     end
    end
 
   # protected

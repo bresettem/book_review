@@ -1,0 +1,8 @@
+<%= form_for ([@book, @review]) do |f| %>
+  <div class="form-group">
+    <%= f.label :review, style: 'color:white' %>
+    <%= f.text_area :review, class: 'form-control' %>
+  </div>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
+<% end %>
+<br />
