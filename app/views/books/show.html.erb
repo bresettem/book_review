@@ -2,67 +2,89 @@
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
       <div class="image-container">
-       <%= link_to (image_tag @books.image_link, class: 'center-block thumbnail first-image'), @books.info_link, :target => '_blank' %>
-       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @books.info_link, :target => '_blank' %>
+       <%= link_to (image_tag @book.image_link, class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank' %>
+       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @book.info_link, :target => '_blank' %>
       </div>
     </div>
-    <div class="col-md-5 col-md-offset-1 well">
-      <h1><%= @books.title %> by <%= @books.authors %></h1>
-      <ul>
-        <li>
-          <% if @books.categories.blank? %>
-            No Genre is available
-          <% else %>
-            <%= @books.categories %>
-          <% end %>
-        </li>
-        <li>
-          <% if @books.ratings_count.blank? %>
-            No Ratings available
-          <% else %>
-            <%= @books.average_rating %> with 
-            <% if @books.ratings_count === 1 %>
-              <%= @books.ratings_count %> rating
+    <div class="col-md-5 col-md-offset-1">
+      <div class="well">
+        <h1><%= @book.title %> by <%= @book.authors %></h1>
+        <ul>
+          <li>
+            <% if @book.categories.blank? %>
+              No Genre is available
             <% else %>
-              <%= @books.ratings_count %> ratings
+              <%= @book.categories %>
             <% end %>
-          <% end %>
-        </li>
-         <li>
-          <% if @books.page_count.blank? %>
-            No pages are available
+          </li>
+          <li>
+            <% if @book.ratings_count.blank? %>
+              No Ratings available
+            <% else %>
+              <%= @book.average_rating %> with 
+              <% if @book.ratings_count === 1 %>
+                <%= @book.ratings_count %> rating
+              <% else %>
+                <%= @book.ratings_count %> ratings
+              <% end %>
+            <% end %>
+          </li>
+           <li>
+            <% if @book.page_count.blank? %>
+              No pages are available
+            <% else %>
+              <%= @book.page_count %> pages
+            <% end %>
+          </li>
+          <li>
+            <% if @book.published_date.blank? %>
+              No Published Date
+            <% else %>
+              Published on <%= @book.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @book.publisher %>
+            <% end %>
+          </li>
+          <li>
+            <% if @book.isbn.blank? %>
+              No ISBN number
+            <% else %>
+              <%= @book.isbn %>
+            <% end %>
+          </li>
+        </ul>
+        <p>
+          <% if @book.description.blank? %>
+            No description is available
           <% else %>
-            <%= @books.page_count %> pages
+            <%= @book.description %>
           <% end %>
-        </li>
-        <li>
-          <% if @books.published_date.blank? %>
-            No Published Date
-          <% else %>
-            Published on <%= @books.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @books.publisher %>
-          <% end %>
-        </li>
-        <li>
-          <% if @books.isbn.blank? %>
-            No ISBN number
-          <% else %>
-            <%= @books.isbn %>
-          <% end %>
-        </li>
-      </ul>
-      <p>
-        <% if @books.description.blank? %>
-          No description is available
-        <% else %>
-          <%= @books.description %>
+        </p>
+      </div>
+      <%= render 'reviews/form' %>
+      <ol>
+        <% @book.reviews.each do |r| %>
+          <div class="well">
+            <li>
+              <p><%= r.review %></p>
+              <p><strong>Posted by: </strong><%= r.user.user_name %> <%=  time_ago_in_words(r.updated_at) %> ago<br />
+    					<% if user_signed_in? && (r.user.id == current_user.id) %>
+              	<%= link_to "Edit", edit_book_review_path(@book, r) %> <%= link_to "Delete", [@book, r], method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+              <% end %></p>
+            </li>
+          </div>
         <% end %>
-      </p>
+      </ol>
     </div>
     <div class="col-md-3 col-xs-offset-1">
       <h1 class="text-center featured">Featured</h1>
-      <% @random.each do |a| %>
-			  <%= link_to (image_tag a.image_link, class: 'img-thumbnail image-thumbnail'), book_path(a) %>
-		  <% end %>
+      <% if @random.blank? %>
+        <div class="well well-sm">
+          <p>Sorry, there are no featured books to display.</p>
+        </div>
+      <% else %>
+        <% @random.each do |a| %>
+  			  <%= link_to (image_tag a.image_link, class: 'img-thumbnail image-thumbnail'), book_path(a) %>
+  		  <% end %>
+  		<% end %>
     </div>
   </div>
 </div>
