@@ -81,14 +81,6 @@ class BooksController < ApplicationController
 				redirect_to books_path
 			end
 		end
-<<<<<<< HEAD
-		def featured_books(books)
-			# Is an Active Record query where it finds all ids in the table except for the id of the book that we are already
-			# on in the show page. It then only shows a select number of random books to display.
-			max = Book.count
-			num_of_books = 4
-			@random = Book.where(id: [1..max]).where.not(id: books).shuffle.take(num_of_books)
-=======
 		
 		def featured_books(books)
 			# Is an Active Record query where it finds all ids in the table except for the id of the book that we are already
@@ -97,6 +89,5 @@ class BooksController < ApplicationController
 			max = Book.last
 			num_of_books = 4
 			@random = Book.where(id: [min..max]).where.not(id: books).shuffle.take(num_of_books)
->>>>>>> reviews
 		end
 end
