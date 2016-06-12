@@ -10,7 +10,7 @@
 	<div class="row" id="portfolio">
 		<% @allBooks.each do |a| %>
 			<div class="col-xs-2 center-block">
-				<%= link_to (image_tag a.image_link(:medium), class: 'center-block img-thumbnail'), book_path(a) %>
+				<%= missing_image(a) %>
 				<div class="caption well well-sm">
 					<strong>Posted by: </strong><%= a.user.user_name %><br />
 					<% if user_signed_in? && (a.user.id == current_user.id) %>
