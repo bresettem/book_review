@@ -20,6 +20,14 @@ module BooksHelper
     end
   end
   
+  def published_date(result)
+    if result.published_date.blank?
+      "No Published Date"
+    else
+      "Published on #{result.try(:published_date).try(:strftime, "%m/%d/%Y")} by #{result.publisher}"
+    end    
+  end
+  
   def authors(result)
     unless result.authors.blank?
       "by #{result.authors}"
@@ -34,6 +42,13 @@ module BooksHelper
     end
   end
   
+  def isbn(result)
+    if @book.isbn.blank?
+      "No ISBN number"
+    else
+      result.isbn
+    end   
+  end
   def missing_image(a)
     if a.image_link.blank?
       link_to (image_tag "missing.svg", class: 'center-block missing-book'), book_path(a)
@@ -48,6 +63,14 @@ module BooksHelper
     else
       link_to (image_tag @book.image_link, class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank'
       #link_to (image_tag 'google_preview.gif', class: 'center-block thumbnail second-image'), @book.info_link, :target => '_blank'
+    end
+  end
+  
+  def title()
+    if @book.categories.blank?
+      "No Genre is available"
+    else
+      @book.categories
     end
   end
 end

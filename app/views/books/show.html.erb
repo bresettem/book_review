@@ -12,54 +12,13 @@
       <div class="well">
         <h1><%= @book.title %> by <%= @book.authors %></h1>
         <ul>
-          <li>
-            <% if @book.categories.blank? %>
-              No Genre is available
-            <% else %>
-              <%= @book.categories %>
-            <% end %>
-          </li>
-          <li>
-            <% if @book.ratings_count.blank? %>
-              No Ratings available
-            <% else %>
-              <%= @book.average_rating %> with 
-              <% if @book.ratings_count === 1 %>
-                <%= @book.ratings_count %> rating
-              <% else %>
-                <%= @book.ratings_count %> ratings
-              <% end %>
-            <% end %>
-          </li>
-           <li>
-            <% if @book.page_count.blank? %>
-              No pages are available
-            <% else %>
-              <%= @book.page_count %> pages
-            <% end %>
-          </li>
-          <li>
-            <% if @book.published_date.blank? %>
-              No Published Date
-            <% else %>
-              Published on <%= @book.try(:published_date).try(:strftime, "%m/%d/%Y") %> by <%= @book.publisher %>
-            <% end %>
-          </li>
-          <li>
-            <% if @book.isbn.blank? %>
-              No ISBN number
-            <% else %>
-              <%= @book.isbn %>
-            <% end %>
-          </li>
+          <li><%= title() %></li>
+          <li><%= ratings_count(result=@book) %></li>
+           <li><%= page_count(result=@book) %> pages</li>
+          <li><%= published_date(result=@book) %></li>
+          <li><%= isbn(result=@book) %></li>
         </ul>
-        <p>
-          <% if @book.description.blank? %>
-            No description is available
-          <% else %>
-            <%= @book.description %>
-          <% end %>
-        </p>
+        <p><%= description(result=@book) %> </p>
       </div>
       <%= render 'reviews/form' %>
       <ol>

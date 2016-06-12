@@ -8,7 +8,7 @@
               <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %>
               <p>
                 <%= ratings_count(result) %>
-                <%= result.try(:published_date).try(:strftime, "%m/%d/%Y") %>
+                <%= published_date(result) %>
                 <%= page_count(result) %> pages
               </p>
               <%= f.submit "Add Book", class: 'btn btn-success middle' %>
