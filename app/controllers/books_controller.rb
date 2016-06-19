@@ -49,7 +49,8 @@ class BooksController < ApplicationController
 		 		flash[:success] = 'Book has been updated.'
 				 redirect_to books_path
 		 else
-				 redirect_to 'edit'
+		 		flash[:danger] = 'Error! Book has not been updated.'
+				 redirect_to books_path
 		 end
 	end
 	

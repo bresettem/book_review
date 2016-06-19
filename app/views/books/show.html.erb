@@ -14,7 +14,7 @@
         <ul>
           <li><%= title() %></li>
           <li><%= ratings_count(result=@book) %></li>
-           <li><%= page_count(result=@book) %> pages</li>
+          <li><%= page_count(result=@book) %> pages</li>
           <li><%= published_date(result=@book) %></li>
           <li><%= isbn(result=@book) %></li>
         </ul>
@@ -37,16 +37,32 @@
     </div>
     <div class="col-md-3 col-xs-offset-1">
       <h1 class="text-center featured">Featured</h1>
-        <%#= featured_section() %>
       <% if @random.blank? %>
         <div class="well well-sm">
           <p>Sorry, there are no featured books to display.</p>
         </div>
       <% else %>
         <% @random.each do |a| %>
-          <%= missing_image(a) %>
+          <div class="caption">
+  					<%=  missing_image(a) %>
+  			    <div class="caption-text">
+  		        <strong>Posted by: </strong><%= a.user.user_name %><br />
+  		        <h4><%= link_to "View Book", book_path(a), class: 'label label-primary' %></h4>
+  				    <% if user_signed_in? && (a.user.id == current_user.id) %>
+  							<h4><%= link_to "Edit", edit_book_path(a), class: 'label label-success' %> </h4>
+  							<h4><%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
+  						<% end %>
+  			     </div>
+  				</div>
   		  <% end %>
   		<% end %>
     </div>
   </div>
 </div>
+<script>
+  $(".caption").hover(function(){
+    $(this).find(".caption-text").fadeIn(400);
+  }, function(){
+    $(this).find(".caption-text").fadeOut(400);
+  });
+</script>

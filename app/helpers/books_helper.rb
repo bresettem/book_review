@@ -53,7 +53,7 @@ module BooksHelper
     if a.image_link.blank?
       link_to (image_tag "missing.svg", class: 'center-block missing-book'), book_path(a)
     else
-    	link_to (image_tag a.image_link(:medium), class: 'center-block img-thumbnail'), book_path(a)
+    	link_to (image_tag a.image_link(:medium), class: 'center-block img-thumbnail caption-img'), book_path(a)
     end
   end
   
@@ -61,7 +61,7 @@ module BooksHelper
     if @book.image_link.blank?
       link_to (image_tag "missing.svg", class: 'center-block missing-book'), @book.info_link, :target => '_blank'
     else
-      link_to (image_tag @book.image_link, class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank'
+      link_to (image_tag @book.image_link(:medium), class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank'
       #link_to (image_tag 'google_preview.gif', class: 'center-block thumbnail second-image'), @book.info_link, :target => '_blank'
     end
   end
