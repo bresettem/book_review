@@ -1,12 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
-      <div class="image-container">
-        <%= show_missing_image() %>
-       <%#= link_to (image_tag @book.image_link, class: 'center-block thumbnail first-image'), @book.info_link, :target => '_blank' %>
-       <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @book.info_link, :target => '_blank' %>
-      
-      </div>
+      <div class="caption">
+        <div class="image-container">
+    			<%= show_missing_image() %>
+          <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @book.info_link, :target => '_blank' %>
+  		    <div class="caption-text">
+  	        <strong>Posted by: </strong><%= @book.user.user_name %><br />
+  			    <% if user_signed_in? && (@book.user.id == current_user.id) %>
+  						<h4><%= link_to "Edit", edit_book_path(@book), class: 'label label-success' %> </h4>
+  						<h4><%= link_to "Delete", @book, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
+  					<% end %>
+  		     </div>
+  		    </div>
+			</div>
     </div>
     <div class="col-md-5 col-md-offset-1">
       <div class="well">

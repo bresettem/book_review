@@ -1,10 +1,6 @@
 
 <%= form_for @book do |f| %>
       <div class="form-group">
-        <%= f.label :books_id %>
-        <%= f.number_field :books_id, class: 'form-control' %>
-      </div>
-      <div class="form-group">
         <%= f.label :image_link %>
         <%= f.file_field :image_link, class: 'form-control' %>
       </div>
@@ -56,5 +52,6 @@
         <%= f.label :info_link %>
         <%= f.text_field :info_link, class: 'form-control' %>
       </div>
+      <%= f.hidden_field :user_id %>
       <%= f.submit "Submit", class: 'btn btn-success' %>
     <% end %>
