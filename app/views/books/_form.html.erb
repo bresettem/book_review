@@ -1,9 +1,13 @@
-
 <%= form_for @book do |f| %>
       <div class="form-group">
         <%= f.label :image_link %>
         <%= f.file_field :image_link, class: 'form-control' %>
       </div>
+      <%= show_missing_image(book=@book) %>
+      <li>
+        <%= f.label :image_delete %><br />
+        <%= f.check_box :image_delete %>
+      </li>
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: 'form-control' %>
