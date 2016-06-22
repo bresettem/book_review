@@ -3,7 +3,7 @@
     <div class="col-md-1 col-md-offset-1">
       <div class="caption">
         <div class="image-container">
-    			<%= show_missing_image() %>
+    			<%= missing_image(book=@book) %>
           <%= link_to (image_tag 'google_preview.gif', class: 'second-image'), @book.info_link, :target => '_blank' %>
   		    <div class="caption-text">
   	        <strong>Posted by: </strong><%= @book.user.user_name %><br />
@@ -21,8 +21,9 @@
         <ul>
           <li><%= title() %></li>
           <li><%= ratings_count(result=@book) %></li>
-          <li><%= page_count(result=@book) %> pages</li>
+          <li><%= page_count(result=@book) %> </li>
           <li><%= published_date(result=@book) %></li>
+          <li><%= publisher(result=@book) %></li>
           <li><%= isbn(result=@book) %></li>
         </ul>
         <p><%= description(result=@book) %> </p>

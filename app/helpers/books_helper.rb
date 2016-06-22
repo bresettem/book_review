@@ -1,52 +1,67 @@
 module BooksHelper
   def ratings_count(result)
     if result.ratings_count.blank? 
-      "0 ratings"
-    else 
-      "#{result.average_rating} with"
+      content_tag(:div, "0 ratings")
+    else
+      content_tag(:div, result.average_rating.to_s + " with")
       if result.ratings_count === 1 
-        "#{result.ratings_count} rating"
-      else 
-        "#{result.ratings_count} ratings"
+        content_tag(:div, result.ratings_count.to_s + " rating")
+      else
+        content_tag(:div, result.ratings_count.to_s + " ratings")
       end 
     end 
   end
   
   def page_count(result)
     if result.page_count.blank?
-      0
+      content_tag(:div, "0 pages")
     else
-      result.page_count
+      content_tag(:div, number_with_delimiter(result.page_count).to_s + " pages")
     end
   end
   
   def published_date(result)
     if result.published_date.blank?
-      "No Published Date"
+      content_tag(:div, "No Published Date")
     else
-      "Published on #{result.try(:published_date).try(:strftime, "%m/%d/%Y")} by #{result.publisher}"
+      if current_page?(action: 'show', id: @book)
+        content_tag(:div, + "Published on " + result.published_date.strftime("%m/%d/%Y"))
+      else
+        content_tag(:div, "Published on " + result.try(:published_date).to_s)
+      end
     end    
   end
   
+  def publisher(result)
+    if result.publisher.blank?
+      content_tag(:div, "No Publisher Available")
+    else
+      if current_page?(action: 'show', id: @book)
+        content_tag(:div, result.publisher)
+      else
+        content_tag(:div, " by " + result.publisher)
+      end
+    end
+  end
   def authors(result)
     unless result.authors.blank?
-      "by #{result.authors}"
+      content_tag(:div, " by " + result.authors)
     end
   end
   
   def description(result)
     if result.description.blank?
-      "No description is available"
+      content_tag(:div, "No description is available")
     else
-        result.description.html_safe
+      content_tag(:div, result.description)
     end
   end
   
   def isbn(result)
     if @book.isbn.blank?
-      "No ISBN number"
+      content_tag(:div, "No ISBN Available")
     else
-      result.isbn
+      content_tag(:div, result.isbn)
     end   
   end
   def missing_image(a)
@@ -57,11 +72,11 @@ module BooksHelper
     end
   end
   
-  def show_missing_image()
-    if @book.image_link.blank?
-      link_to (image_tag "missing.svg", class: 'center-block missing-book caption-img'), @book.info_link, :target => '_blank'
+  def show_missing_image(book)
+    if book.image_link.blank?
+      link_to (image_tag "missing.svg", class: 'center-block missing-book caption-img'), book.info_link, :target => '_blank'
     else
-      link_to (image_tag @book.image_link(:medium), class: 'center-block img-thumbnail first-image caption-img'), @book.info_link, :target => '_blank'
+      link_to (image_tag book.image_link(:medium), class: 'center-block img-thumbnail first-image caption-img'), book.info_link, :target => '_blank'
       #link_to (image_tag 'google_preview.gif', class: 'center-block thumbnail second-image'), @book.info_link, :target => '_blank'
     end
   end
