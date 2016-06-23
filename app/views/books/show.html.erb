@@ -18,7 +18,7 @@
     <div class="col-md-5 col-md-offset-1">
       <div class="well">
         <h1><%= @book.title %> by <%= @book.authors %></h1>
-        <ul>
+        <ul id="see-more">
           <li><%= title() %></li>
           <li><%= ratings_count(result=@book) %></li>
           <li><%= page_count(result=@book) %> </li>
@@ -26,18 +26,17 @@
           <li><%= publisher(result=@book) %></li>
           <li><%= isbn(result=@book) %></li>
         </ul>
-        <p><%= description(result=@book) %> </p>
+        <article><%= description(result=@book) %> </article>
       </div>
       <%= render 'reviews/form' %>
       <ol>
         <% @book.reviews.each do |r| %>
           <div class="well">
-            <li>
-              <p><%= r.review %></p>
-              <p><strong>Posted by: </strong><%= r.user.user_name %> <%=  time_ago_in_words(r.updated_at) %> ago<br />
-    					<% if user_signed_in? && (r.user.id == current_user.id) %>
-              	<%= link_to "Edit", edit_book_review_path(@book, r) %> <%= link_to "Delete", [@book, r], method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
-              <% end %></p>
+              <p><strong>Posted by: </strong><%= r.user.user_name %> <%=  time_ago_in_words(r.updated_at) %> ago
+      					<% if user_signed_in? && (r.user.id == current_user.id) %>
+                	<%= link_to "Edit", edit_book_review_path(@book, r), class: 'label label-primary' %> <%= link_to "Delete", [@book, r], class: 'label label-danger', method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+                <% end %></p>
+              <li><p><%= r.review %></p>
             </li>
           </div>
         <% end %>
@@ -73,4 +72,14 @@
   }, function(){
     $(this).find(".caption-text").fadeOut(400);
   });
+  $(document).ready(function() {
+    $('article').readmore({
+      collapsedHeight: 200
+    });
+    $('#see-more').readmore({
+      collapsedHeight: 40,
+      moreLink: '<a href="#">Show More Book Details</a>'
+    });
+  });
+</script>
 </script>

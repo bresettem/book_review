@@ -5,11 +5,26 @@ module BooksHelper
     else
       content_tag(:div, result.average_rating.to_s + " with")
       if result.ratings_count === 1 
-        content_tag(:div, result.ratings_count.to_s + " rating")
+        content_tag(:div, average_rating(result) + result.ratings_count.to_s + " rating ")
+        
+        #unless result.average_rating.present?
+         # content_tag(:div, result.average_rating)
+        #end
       else
-        content_tag(:div, result.ratings_count.to_s + " ratings")
+        content_tag(:div, average_rating(result) + result.ratings_count.to_s + " ratings ")
+       # unless result.average_rating.present?
+        #  content_tag(:div, result.average_rating)
+        #end
       end 
     end 
+  end
+  
+  def average_rating(result)
+    if result.average_rating.present?
+      result.average_rating.to_s + "/"
+    else
+      "No average"
+    end
   end
   
   def page_count(result)
