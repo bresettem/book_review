@@ -5,17 +5,18 @@
         <div class="col-xs-7 col-xs-offset-2 well well-sm">
           <div class="media">   
             <div class="media-left">
-              <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %>
-              <p>
-                <%= ratings_count(result) %>
-                <%= published_date(result) %>
-                <%= publisher(result) %>
-                <%= page_count(result) %>
-              </p>
+              <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %><br />
               <%= f.submit "Add Book", class: 'btn btn-success middle' %>
           </div>
           <div class="media-body">
-            <h4><%= result.title %> <%= authors(result) %> </h4>
+            <h4><%= title(result) %></h1>
+            <h6><%= authors(result) %></h6>
+            <ul id="see-more">
+              <li><%= ratings_count(result) %></li>
+              <li><%= page_count(result) %> </li>
+              <li>Published on <%= published_date(result) %></li>
+              <li><%= isbn(result) %></li>
+            </ul>
             <article><%= description(result) %></article>
           </div>
         </div>

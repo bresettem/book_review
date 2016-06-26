@@ -2,7 +2,7 @@
 	<div class="jumbotron">
 		<div class="row">
 			<h1>Welcome!</h1>
-			<p>There have been <%= number_with_delimiter(@books_count) %> books added with <%= number_with_delimiter(@pages_count) %> pages.</p>
+			<p>There have been <%= number_with_delimiter(pluralize(@books_count, "book")) %> added with <%= number_with_delimiter(pluralize(@pages_count, "page")) %>.</p>
 		</div>
 	</div>
 </div>
