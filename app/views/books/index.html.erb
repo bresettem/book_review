@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="well well-sm">
 			<h1>Welcome!</h1>
-			<p>There have been <%= number_with_delimiter(pluralize(@books_count, "book")) %> added with <%= number_with_delimiter(pluralize(@pages_count, "page")) %>.</p>
+			<p>There have been <%= pluralize(number_with_delimiter(@books_count), "book") %> added with <%= pluralize(number_with_delimiter(@pages_count), "page") %>.</p>
 			<noscript>You don't have javascript enabled. Please follow this link for assistance in turning it on. <%= link_to "Turn on javascript", "http://www.enable-javascript.com" %></noscript>
 		</div>
 	</div>

@@ -5,7 +5,7 @@ module BooksHelper
   end
   
   def ratings_count(result)
-    result.ratings_count ? pluralize(result.ratings_count, 'review') : "No Rating Available"
+    result.ratings_count ? pluralize(number_with_delimiter(result.ratings_count), "rating") : "No Ratings Available"
   end
   
   def average_rating(result)
@@ -13,7 +13,7 @@ module BooksHelper
   end
   
   def page_count(result)
-    result.page_count ? number_with_delimiter(pluralize(result.page_count, "page")) : "No Page Available"
+    result.page_count ? pluralize(number_with_delimiter(result.page_count), "page") : "No Page Available"
   end
   
   def published_date(result)
