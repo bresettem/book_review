@@ -1,15 +1,12 @@
 <div class="container">
 	<div class="row">
-		<div class="well well-sm">
-			<h1>Welcome!</h1>
-			<p>There have been <%= pluralize(number_with_delimiter(@books_count), "book") %> added with <%= pluralize(number_with_delimiter(@pages_count), "page") %>.</p>
-			<noscript>You don't have javascript enabled. Please follow this link for assistance in turning it on. <%= link_to "Turn on javascript", "http://www.enable-javascript.com" %></noscript>
-		</div>
+		<%= no_books(all_books=@all_books) %>
+		<noscript class="alert alert-danger">You don't have javascript enabled. Please follow this link for assistance in turning it on. <%= link_to "Turn on javascript", "http://www.enable-javascript.com" %></noscript>
 	</div>
 </div>
 <div class="container">
 	<div class="row" id="portfolio">
-		<% @allBooks.each do |a| %>
+		<% @all_books.each do |a| %>
 			<div class="col-xs-2 center-block">
 				<div class="caption">
 					<%= missing_image(a) %>

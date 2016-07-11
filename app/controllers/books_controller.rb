@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 	before_action :owned_book, only: [:edit, :update, :destroy]
 	
   def index
-		@allBooks = Book.all
+		@all_books = Book.all
 		@pages_count = Book.sum(:page_count)
 		@books_count = Book.count
   end
