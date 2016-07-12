@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get '/search' => 'books#search'
   get '/authors' => 'authors#index'
   get 'categories' => 'categories#index'
-
+  get '/faq' => 'faq#index'
+  
   resources :books, except: :new do 
     resources :reviews
   end

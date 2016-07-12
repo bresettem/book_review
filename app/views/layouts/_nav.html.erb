@@ -9,9 +9,6 @@
 			 <span class="icon-bar"></span>
 		  </button>
 		  <%= link_to "<i class='fa fa-book fa-fw fa-lg' aria-hidden='true'></i> Book Review".html_safe, root_path, class: 'navbar-brand' %>
-		  <ul class="nav navbar-nav">
-		  	<li><%= link_to "<i class='fa fa-github fa-fw fa-lg' aria-hidden='true'></i> GitHub".html_safe, "https://github.com/bresettem/book_review", :target => '_blank' %></li>
-		  <ul>
 		</div>
   
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,6 +24,7 @@
 			</div>
 			<% end %>
 		  <ul class="nav navbar-nav navbar-right">
+		   <li><%= link_to "<i class='fa fa-github fa-fw fa-lg' aria-hidden='true'></i> GitHub".html_safe, "https://github.com/bresettem/book_review", :target => '_blank' %></li>
 		   <li><%= link_to "Authors", authors_path %></li>
 			 <li><%= link_to "Categories", categories_path %></li>
 			 <li class="dropdown">
@@ -46,10 +44,9 @@
 					<li><%= link_to "<i class='fa fa-sign-in fa-fw' aria-hidden='true'></i>Sign In".html_safe, new_user_session_path %></li>
 					<li><%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i> Sign Up".html_safe, new_user_registration_path %></li>
 				<% end %>
-				  
-				  
 				</ul>
 			 </li>
+			 <li><%= link_to "<i class='fa fa-question fa-lg' aria-hidden='true'></i> FAQ".html_safe, faq_path %></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	 </div><!-- /.container-fluid -->
