@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   def search
   	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10)
   	if @results.total_items === 0
-  		flash.now[:danger] = "Did not return any search results."
+  		flash.now[:danger] = "Error! Did not return any search results."
   	else
   		show_form
   	end
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 			redirect_to books_path
 		else
 			# Handles an error on save.
-			flash[:danger] = 'Book has not been added. Book duplicate?'
+			flash[:danger] = 'Error! Book has not been added. Book duplicate?'
 			 redirect_to books_path
 		end
 	end
