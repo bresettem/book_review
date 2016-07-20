@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+#Used for pagination
+gem 'will_paginate', '3.1.0'
 # Used to connect to Google Books API
 gem 'googlebooks', '0.0.9'
 # Used for adding read more
