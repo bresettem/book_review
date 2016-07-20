@@ -6,8 +6,8 @@
 </div>
 <div class="container">
 	<div class="row" id="portfolio">
+		<div class="col-xs-12">
 		<% @all_books.each do |a| %>
-			<div class="col-xs-2 center-block">
 				<div class="caption">
 					<%= missing_image(a) %>
 			    <div class="caption-text">
@@ -19,8 +19,6 @@
 						<% end %>
 			     </div>
 				</div>
-		      
-		    </div>
 		<% end %>
 	</div>
 </div>
