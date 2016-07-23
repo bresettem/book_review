@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-#Used for pagination
+# Used for fake book title
+gem 'faker', '1.6.5'
+# Used for pagination
 gem 'will_paginate', '3.1.0'
 # Used to connect to Google Books API
 gem 'googlebooks', '0.0.9'
