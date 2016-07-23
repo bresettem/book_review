@@ -5,24 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Genre.create(book_type: "Fiction", genre: "Young Adult")
-Genre.create(book_type: "Fiction", genre: "Fantasy")
-Genre.create(book_type: "Fiction", genre: "Literary Fiction")
-Genre.create(book_type: "Fiction", genre: "Children's")
-Genre.create(book_type: "Fiction", genre: "Middle Grade")
-Genre.create(book_type: "Fiction", genre: "Thrillers/Suspense")
-Genre.create(book_type: "Fiction", genre: "Romance")
-Genre.create(book_type: "Fiction", genre: "Science Fiction")
-Genre.create(book_type: "Fiction", genre: "Women's Fiction")
-Genre.create(book_type: "Fiction", genre: "Historical")
-Genre.create(book_type: "Nonfiction", genre: "Memoirs")
-Genre.create(book_type: "Nonfiction", genre: "Narrative")
-Genre.create(book_type: "Nonfiction", genre: "Self-Help")
-Genre.create(book_type: "Nonfiction", genre: "Religion/Spirituality")
-Genre.create(book_type: "Nonfiction", genre: "Business/Finance")
-Genre.create(book_type: "Nonfiction", genre: "Cultural/Social Issues")
-Genre.create(book_type: "Nonfiction", genre: "Biography")
-Genre.create(book_type: "Nonfiction", genre: "General Non-Fiction")
-Genre.create(book_type: "Nonfiction", genre: "History")
-Genre.create(book_type: "Nonfiction", genre: "Health/Fitness")
-Genre.create(book_type: "Nonfiction", genre: "Autobiography")
+# require 'faker'
+books=[]
+5.times do |search|
+  search = GoogleBooks.search(Faker::Book.title, :count => 40)
+  search.each do |a|
+    books << a
+  end
+end
+books.each do |result|
+  Book.create(
+    books_id: result.id,
+    image_link: result.image_link,
+    title: result.title,
+    authors: result.authors,
+    publisher: result.publisher,
+    published_date: result.published_date,
+    description: result.description,
+    isbn: result.isbn,
+    page_count: result.page_count,
+    categories: result.categories,
+    average_rating: result.average_rating,
+    ratings_count: result.ratings_count,
+    preview_link: result.preview_link,
+    info_link: result.info_link,
+    user_id: 1
+  )
+end
