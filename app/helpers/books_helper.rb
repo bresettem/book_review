@@ -1,6 +1,6 @@
 module BooksHelper
-  def no_books(all_books)
-    if all_books === []
+  def no_books(books)
+    if books === []
       content_tag(:div, "Error! No books have been added.", class: 'alert alert-danger')
     else
 		  content_tag(:div, content_tag(:p, "There have been " + pluralize(number_with_delimiter(@books_count), "book") + " added with " + pluralize(number_with_delimiter(@pages_count), "page") + "."), class: 'alert alert-info')
