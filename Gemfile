@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Used for Bootstrap pagination
+gem 'bootstrap-will_paginate', '0.0.10'
 # Used to dump seeds
 gem 'seed_dump', '3.2.4'
 # Used for fake book title
