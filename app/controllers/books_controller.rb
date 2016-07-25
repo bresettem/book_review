@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   end
   
   def search
-  	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10)
+  	@results = GoogleBooks.search(params[:search].downcase, :filter => 'partial', :count => 10, :api_key => ENV['API_KEY'])
   	if @results.total_items === 0
   		flash.now[:danger] = "Error! Did not return any search results."
   	else
