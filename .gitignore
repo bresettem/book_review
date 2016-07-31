@@ -17,3 +17,6 @@
 /tmp
 # Ignore all book images
 /public/system/*
+
+# Ignore all yml in conifg
+config/*.yml
