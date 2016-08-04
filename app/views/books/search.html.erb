@@ -1,17 +1,18 @@
 <% @results.each_with_index do |result,index| %>
   <%= form_for(@book[index]) do |f| %>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
-        <div class="col-xs-7 col-xs-offset-2 well well-sm">
-          <div class="media">   
-            <div class="media-left">
-              <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %><br />
+        <div class="col-xs-8 col-xs-offset-2 well well-sm">
+          <div class="media pull-left">
+            <div class-"media-left">
+              <%= link_to (image_tag result.image_link, class: 'img-thumbnail'), result.info_link, :target => '_blank' %><br />
               <%= f.submit "Add Book", class: 'btn btn-success middle' %>
+            </div>
           </div>
           <div class="media-body">
             <h4><%= title(result) %></h1>
             <h6><%= authors(result) %></h6>
-            <ul id="see-more">
+            <ul class="see-more">
               <li><%= ratings_count(result) %></li>
               <li><%= page_count(result) %> </li>
               <li>Published on <%= published_date(result) %></li>
@@ -20,29 +21,21 @@
             <article><%= description(result) %></article>
           </div>
         </div>
-        <%= f.hidden_field :books_id, value: result.id %>
-        <%= f.hidden_field :image_link, value: result.image_link %>
-        <%= f.hidden_field :title, value: result.title %>
-        <%= f.hidden_field :authors, value: result.authors %>
-        <%= f.hidden_field :publisher, value: result.publisher %>
-        <%= f.hidden_field :published_date, value: result.published_date %>
-        <%= f.hidden_field :description, value: result.description %>
-        <%= f.hidden_field :isbn, value: result.isbn %>
-        <%= f.hidden_field :page_count, value: result.page_count %>
-        <%= f.hidden_field :categories, value: result.categories %>
-        <%= f.hidden_field :average_rating, value: result.average_rating %>
-        <%= f.hidden_field :ratings_count, value: result.ratings_count %>
-        <%= f.hidden_field :preview_link, value: result.preview_link %>
-        <%= f.hidden_field :info_link, value: result.info_link %>
       </div>
-     </div>
     </div>
+    <%= f.hidden_field :books_id, value: result.id %>
+    <%= f.hidden_field :image_link, value: result.image_link %>
+    <%= f.hidden_field :title, value: result.title %>
+    <%= f.hidden_field :authors, value: result.authors %>
+    <%= f.hidden_field :publisher, value: result.publisher %>
+    <%= f.hidden_field :published_date, value: result.published_date %>
+    <%= f.hidden_field :description, value: result.description %>
+    <%= f.hidden_field :isbn, value: result.isbn %>
+    <%= f.hidden_field :page_count, value: result.page_count %>
+    <%= f.hidden_field :categories, value: result.categories %>
+    <%= f.hidden_field :average_rating, value: result.average_rating %>
+    <%= f.hidden_field :ratings_count, value: result.ratings_count %>
+    <%= f.hidden_field :preview_link, value: result.preview_link %>
+    <%= f.hidden_field :info_link, value: result.info_link %>
   <% end %>
 <% end %>
-<script>
-$(document).ready(function() {
-  $('article').readmore({
-    collapsedHeight: 200
-  });
-});
-</script>

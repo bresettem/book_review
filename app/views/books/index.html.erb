@@ -1,34 +1,32 @@
 <div class="container">
 	<div class="row">
+		<noscript>
+			<div class="alert alert-danger">
+				<p>You don't have JavaScript enabled. Please follow this link for assistance in turning it on. <%= link_to "Turn on javascript", "http://www.enable-javascript.com", class: 'btn btn-primary' %></p>
+			</div>
+		</noscript>
 		<%= no_books(books=@books) %>
-		<noscript class="alert alert-danger">You don't have javascript enabled. Please follow this link for assistance in turning it on. <%= link_to "Turn on javascript", "http://www.enable-javascript.com" %></noscript>
 	</div>
 </div>
 <div class="container">
 	<div class="row" id="portfolio">
 		<div class="col-xs-12">
-		<% @books.each do |a| %>
+			<% @books.each do |a| %>
 				<div class="caption">
 					<%= missing_image(a) %>
-			    <div class="caption-text">
-		        <strong>Posted by: </strong><%= a.user.user_name %><br />
-		        <h4><%= link_to "View Book", book_path(a), class: 'label label-primary' %></h4>
-				    <% if user_signed_in? && (a.user.id == current_user.id) %>
-							<h4><%= link_to "Edit", edit_book_path(a), class: 'label label-success' %> </h4>
-							<h4><%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
+					<div class="caption-text">
+						<p class="wrap-text"><%= a.title %></p>
+						<%= authors(a) %>
+						<h4><%= link_to "View Book", book_path(a), class: 'label label-primary' %></h4>
+						<% if user_signed_in? && (a.user.id == current_user.id) %>
+							<h4><%= link_to "Edit", edit_book_path(a), class: 'label label-success' %> <%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
 						<% end %>
-			     </div>
+					</div>
 				</div>
-		<% end %>
-			<div class="pagination-center">
-			  <%= will_paginate @books%>
+			<% end %>
+			<div class="text-center">
+				<%= will_paginate @books%>
 			</div>
+		</div>
 	</div>
 </div>
-<script>
-  $(".caption").hover(function(){
-    $(this).find(".caption-text").fadeIn(400);
-  }, function(){
-    $(this).find(".caption-text").fadeOut(400);
-  });
-</script>

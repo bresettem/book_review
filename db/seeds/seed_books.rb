@@ -1,6 +1,9 @@
+User.create([
+  {email: "runiq@hotmail.com", password: "$2a$11$64q6dICwsyCDO9rcC8PbZ.T5xMKJjQdhal3IK0vkPCJ.Os1STsVaO", first_name: "Brandon", last_name: "Grimes", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2016-08-04 22:25:23", last_sign_in_at: "2016-08-04 22:25:23", current_sign_in_ip: "70.178.126.178", last_sign_in_ip: "70.178.126.178", user_name: "moxakaxop"}
+])
 require 'benchmark'
 start_books = Book.count
-num_times = 5
+num_times = 20
 books=[]
 
 Benchmark.bm do |x|

@@ -1,14 +1,16 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-5 col-md-offset-3 well">
+		<div class="col-md-5 col-md-offset-3">
+			<div class="well">
 				<h1>Authors</h1>
-				<ol>
+				<ul>
 				<% @authors.each do |c| %>
 						<li>
 							<%= c.authors %>
 						</li>
 				<% end %>
-				</ol>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
