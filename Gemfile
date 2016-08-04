@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
+# Used for storing environment variables
+gem 'figaro', '1.1.1'
+# Used for storing images
+gem 'aws-sdk', '2.5.0'
 # Used for Bootstrap pagination
 gem 'bootstrap-will_paginate', '0.0.10'
 # Used to dump seeds
@@ -14,7 +18,7 @@ gem 'readmorejs-rails', '0.0.12'
 # Use for profiles
 gem 'devise', '4.0.1'
 # Used for adding book covers
-gem 'paperclip', '4.3.6'
+gem 'paperclip', '5.0'
 # Install bootstrap 
 gem 'bootstrap-sass', '3.3.6'
 # Use for icons
