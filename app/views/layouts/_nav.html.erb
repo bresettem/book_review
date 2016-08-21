@@ -1,53 +1,50 @@
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-	 <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			 <span class="sr-only">Toggle navigation</span>
-			 <span class="icon-bar"></span>
-			 <span class="icon-bar"></span>
-			 <span class="icon-bar"></span>
-		  </button>
-		  <%= link_to "<i class='fa fa-book fa-fw fa-lg' aria-hidden='true'></i> Book Review".html_safe, root_path, class: 'navbar-brand' %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container-fluid">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		 <span class="sr-only">Toggle navigation</span>
+		 <span class="icon-bar"></span>
+		 <span class="icon-bar"></span>
+		 <span class="icon-bar"></span>
+	  </button>
+	  <%= link_to "<i class='fa fa-book fa-fw fa-lg' aria-hidden='true'></i> Book Review".html_safe, root_path, class: 'navbar-brand' %>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<%= form_tag search_path, class: "navbar-form navbar-right", :role => "search", :method => 'get' do %>
+		<div class="form-group">
+			<%= text_field_tag :search, params[:q], class: "form-control", :placeholder => "Search", :type => "text", :required => true %>
+		  <%= submit_tag "Submit", :name => nil, class: "btn btn-default" %>
 		</div>
-  
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <!--<ul class="nav navbar-nav">
-			 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-			 <li><a href="#">Link</a></li>
-		  </ul>-->
-			<%= form_tag search_path, class: "navbar-form navbar-right", :role => "search", :method => 'get' do %>
-			<div class="form-group">
-				<%= text_field_tag :search, params[:q], class: "form-control", :placeholder => "Search", :type => "text", :required => true %>
-			  <%= submit_tag "Submit", :name => nil, class: "btn btn-default" %>
-			</div>
+		<% end %>
+		<ul class="nav navbar-nav navbar-left">
+			<li><%= link_to "<i class='fa fa-github fa-fw fa-lg' aria-hidden='true'></i> GitHub".html_safe, "https://github.com/bresettem/book_review", :target => '_blank' %></li>
+	 	</ul>
+	  <ul class="nav navbar-nav navbar-right">
+	   <li><%= link_to "Authors", authors_path %></li>
+		 <li><%= link_to "Categories", categories_path %></li>
+		 <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user icon-large"></i>
+			<% if user_signed_in? %>
+				<%= current_user.first_name %> <%= current_user.last_name %>
+			<% else %>
+				Account
 			<% end %>
-		  <ul class="nav navbar-nav navbar-right">
-		   <li><%= link_to "<i class='fa fa-github fa-fw fa-lg' aria-hidden='true'></i> GitHub".html_safe, "https://github.com/bresettem/book_review", :target => '_blank' %></li>
-		   <li><%= link_to "Authors", authors_path %></li>
-			 <li><%= link_to "Categories", categories_path %></li>
-			 <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user icon-large"></i>
-				<% if user_signed_in? %>
-					<%= current_user.first_name %> <%= current_user.last_name %>
-				<% else %>
-					Account
-				<% end %>
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				<% if user_signed_in? %>
-					<li><%= link_to "<i class='fa fa-pencil fa-fw' aria-hidden='true'></i> Edit Account".html_safe, edit_user_registration_path%></li>
-					<li><%= link_to "<i class='fa fa-sign-out fa-fw' aria-hidden='true'></i> Logout".html_safe, destroy_user_session_path, :method => :delete %></li>
-					<!--<li><a href="#">Profile</a></li>-->
-				<% else %>
-					<li><%= link_to "<i class='fa fa-sign-in fa-fw' aria-hidden='true'></i>Sign In".html_safe, new_user_session_path %></li>
-					<li><%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i> Sign Up".html_safe, new_user_registration_path %></li>
-				<% end %>
-				</ul>
-			 </li>
-			 <li><%= link_to "<i class='fa fa-question fa-lg' aria-hidden='true'></i> FAQ".html_safe, faq_path %></li>
-		  </ul>
-		</div><!-- /.navbar-collapse -->
-	 </div><!-- /.container-fluid -->
-  </nav>
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+			<% if user_signed_in? %>
+				<li><%= link_to "<i class='fa fa-pencil fa-fw' aria-hidden='true'></i> Edit Account".html_safe, edit_user_registration_path%></li>
+				<li><%= link_to "<i class='fa fa-sign-out fa-fw' aria-hidden='true'></i> Logout".html_safe, destroy_user_session_path, :method => :delete %></li>
+			<% else %>
+				<li><%= link_to "<i class='fa fa-sign-in fa-fw' aria-hidden='true'></i>Sign In".html_safe, new_user_session_path %></li>
+				<li><%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i> Sign Up".html_safe, new_user_registration_path %></li>
+			<% end %>
+			</ul>
+		 </li>
+		 <li><%= link_to "<i class='fa fa-question fa-lg' aria-hidden='true'></i> FAQ".html_safe, faq_path %></li>
+	  </ul>
+	</div><!-- /.navbar-collapse -->
+ </div><!-- /.container-fluid -->
+</nav>
