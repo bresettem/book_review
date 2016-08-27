@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 	before_action :owned_book, only: [:edit, :update, :destroy]
 	
   def index
-		@books = Book.paginate(:page => params[:page], :per_page => 30)
+		@books = Book.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
 		@pages_count = Book.sum(:page_count)
 		@books_count = Book.count
   end

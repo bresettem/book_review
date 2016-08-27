@@ -20,7 +20,7 @@
       <div class="well well-sm">
         <h3><%= title(result=@book) %></h3>
         <h6><%= authors(result=@book) %></h6>
-        <ul id="see-more">
+        <ul class="see-more">
           <li><%= average_ratings_count(result=@book) %></li>
           <li><%= page_count(result=@book) %> </li>
           <li><%= published_date(result=@book) %></li>
@@ -53,11 +53,11 @@
           <div class="caption">
   					<%=  missing_image(a) %>
   			    <div class="caption-text">
-  		        <strong>Posted by: </strong><%= a.user.user_name %><br />
+    		      <p class="wrap-text"><%= @book.title %></p>
+  						<%= authors(a=@book) %>
   		        <h4><%= link_to "View Book", book_path(a), class: 'label label-primary' %></h4>
   				    <% if user_signed_in? && (a.user.id == current_user.id) %>
-  							<h4><%= link_to "Edit", edit_book_path(a), class: 'label label-success' %> </h4>
-  							<h4><%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
+  							<h4><%= link_to "Edit", edit_book_path(a), class: 'label label-success' %> <%= link_to "Delete", a, method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'label label-danger'%></h4>
   						<% end %>
   			     </div>
   				</div>
@@ -66,19 +66,3 @@
     </div>
   </div>
 </div>
-<script>
-  $(".caption").hover(function(){
-    $(this).find(".caption-text").fadeIn(400);
-  }, function(){
-    $(this).find(".caption-text").fadeOut(400);
-  });
-  $(document).ready(function() {
-    $('article').readmore({
-      collapsedHeight: 200
-    });
-    $('#see-more').readmore({
-      collapsedHeight: 40,
-      moreLink: '<a href="#">Show More Book Details</a>'
-    });
-  });
-</script>

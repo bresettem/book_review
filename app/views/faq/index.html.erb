@@ -3,9 +3,8 @@
     <div class="col-md-12">
       <h1 class="white">General FAQ</h1>
       <div class="faq">
-        <%= link_to "Open All", "#", class: 'btn btn-primary openall' %> <%= link_to "Close All", "#", class: 'btn btn-primary closeall' %>
+        <%#= link_to "Open All", "#", id: 'openall', class: 'btn btn-primary' %> 
       </div>
-      
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
@@ -53,10 +52,8 @@
           </div>
           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-              
-                  <ol type="a">
-                    <li>Check to make sure the book you are trying to add as not already been added.</li>
-                    
+              <ol type="a">
+                <li>Check to make sure the book you are trying to add as not already been added.</li>
               </ol>
             </div>
           </div>
@@ -215,17 +212,6 @@
           </div>
         </div>
       </div><!-- End Accordion -->
-      
     </div>
   <div>
 </div>
-<script>
-$('.closeall').click(function(){
-  $('.panel-collapse.in')
-    .collapse('hide');
-});
-$('.openall').click(function(){
-  $('.panel-collapse:not(".in")')
-    .collapse('show');
-});
-</script>

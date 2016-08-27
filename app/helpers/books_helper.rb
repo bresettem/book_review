@@ -42,7 +42,11 @@ module BooksHelper
   def authors(result)
     result.authors ? result.authors : "No Author is available"
   end
-  
+  def authors(a)
+    if a.authors.present?
+      content_tag(:p, 'By: ' + a.authors, class: 'wrap-text')
+    end
+  end
   def description(result)
     result.description ? result.description : "No description is available"
   end
@@ -53,9 +57,9 @@ module BooksHelper
   
   def missing_image(a)
     if a.image_link.blank?
-      link_to (image_tag "missing.svg", class: 'img-thumbnail missing-book caption-img'), book_path(a)
+      link_to (image_tag "missing.svg", alt: 'Missing Image', class: 'img-thumbnail missing-book caption-img'), book_path(a)
     else
-    	link_to (image_tag a.image_link.url(:medium), class: 'img-thumbnail caption-img'), book_path(a)
+    	link_to (image_tag a.image_link.url(:medium), alt: a.title, class: 'img-thumbnail caption-img'), book_path(a)
     end
   end
   
@@ -63,7 +67,7 @@ module BooksHelper
     if book.image_link.blank?
       link_to (image_tag "missing.svg", class: 'img-thumbnail missing-book caption-img'), book.info_link, :target => '_blank'
     else
-      link_to (image_tag book.image_link.url(:medium), class: 'img-thumbnail first-image caption-img'), book.info_link, :target => '_blank'
+      link_to (image_tag book.image_link.url(:medium), alt: 'Missing image', class: 'img-thumbnail first-image caption-img'), book.info_link, :target => '_blank'
     end
   end
 end
