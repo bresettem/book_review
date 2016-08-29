@@ -11,7 +11,8 @@ var loadFunction = function() {
 	});
 	$('.see-more').readmore({
     collapsedHeight: 40,
-    moreLink: '<a href="#">Show More Book Details</a>'
+    moreLink: '<a href="#" class="btn btn-primary">Show More Book Details</a>',
+    lessLink: '<a href="#" class="btn btn-primary">Close</a>'
   });
   
   /*Source: http://www.bootply.com/peFUdnwOpZ

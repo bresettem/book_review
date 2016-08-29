@@ -50,16 +50,16 @@ $img-height: 195px;
   left: 15px; 
   z-index: 3;
   opacity: 1.0;
-  filter: alpha(opacity=100); /* For IE8 and earlier */
+  filter: alpha(opacity=100);
 }
 .second-image:hover {
   opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
+  filter: alpha(opacity=40);
 }
 #search ul li {
   text-decoration: none;
 }
-.well li:before {
+.see-more li:before {
 	content: '\f061';
 	font-family: 'FontAwesome';
 	float: left;
@@ -128,9 +128,5 @@ hr {
   }
 }
 .wrap-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
-  max-height: $img-height;
-  overflow: hidden;
+  line-height: 1.2em;
 }

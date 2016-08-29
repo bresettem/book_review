@@ -44,7 +44,7 @@ module BooksHelper
   end
   def authors(a)
     if a.authors.present?
-      content_tag(:p, 'By: ' + a.authors, class: 'wrap-text')
+      content_tag(:p, 'By: ' + truncate(a.authors, length: 40), class: 'wrap-text')
     end
   end
   def description(result)
