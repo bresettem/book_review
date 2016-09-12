@@ -51,7 +51,7 @@ module BooksHelper
     result.description ? result.description : "No description is available"
   end
   def isbn(result) 
-    (result.isbn ? result.isbn : "No ISBN is Available")
+    result.isbn ? result.isbn : "No ISBN is available"
   end
   def missing_image(a)
     if a.image_link.blank?

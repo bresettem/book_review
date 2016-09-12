@@ -27,18 +27,7 @@
         <article><%= description(result=@book) %> </article>
       </div>
       <%= render 'reviews/form' %>
-      <ol>
-        <% @book.reviews.each do |r| %>
-          <div class="well">
-              <p><strong>Posted by: </strong><%= r.user.user_name %> <%=  time_ago_in_words(r.updated_at) %> ago
-      					<% if user_signed_in? && current_owner(a=r) %>
-                	<%= link_to "Edit", edit_book_review_path(@book, r), class: 'label label-primary' %> <%= link_to "Delete", [@book, r], class: 'label label-danger', method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
-                <% end %></p>
-              <li><p><%= r.review %></p>
-            </li>
-          </div>
-        <% end %>
-      </ol>
+      <%= render 'reviews/reviews' %>
     </div>
     <div class="col-md-4">
       <h1 class="center-block featured">Featured</h1>

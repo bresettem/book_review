@@ -23,9 +23,6 @@ $img-height: 195px;
   min-width: 142px !important;
   margin: 5px 5px !important;
 }
-.img-thumbnail {
-  margin: 0px 15px 15px 15px !important;
-}
 .missing-book {
   background: black !important;
   border: 4px solid #ddd !important;
@@ -103,7 +100,6 @@ hr {
   left: 0; 
   right: 0;
   height: $img-height;
-  margin: 0px 15px 15px 15px;
   border-radius: 4px;
 }
 .caption-search {
@@ -114,19 +110,9 @@ hr {
 .white {
   color: white
 }
-.faq {
- position: fixed; 
- z-index: 1;
- top: 7em;
- right: 7.4em;
-}
-@media only screen and (max-width: 394px) {
-  .img-thumbnail, .caption-text {
-    margin: 5px 5px !important;
-    height: $img-height !important;
-    width: $img-width !important;
-  }
-}
 .wrap-text {
   line-height: 1.2em;
+}
+textarea {
+  width: 100% !important;
 }

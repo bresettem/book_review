@@ -5,16 +5,22 @@ var loadFunction = function() {
   }, function(){
     $(this).find(".caption-text").fadeOut(400);
   });
-  
 	$("article").readmore({
-	  collapsedHeight: 200
+	  collapsedHeight: 200,
+	  moreLink: '<a href="#" class="btn btn-primary">Read More</a>',
+    lessLink: '<a href="#" class="btn btn-primary">Close</a>',
+	});
+	$(".review-readmore").readmore({
+	  collapsedHeight: 200,
+	  moreLink: '<a href="#" class="btn btn-primary">Read More</a>',
+    lessLink: '<a href="#" class="btn btn-primary" style="inherit;">Close</a>',
+    
 	});
 	$('.see-more').readmore({
     collapsedHeight: 40,
     moreLink: '<a href="#" class="btn btn-primary">Show More Book Details</a>',
-    lessLink: '<a href="#" class="btn btn-primary">Close</a>'
+    lessLink: '<a href="#" class="btn btn-primary">Close</a>',
   });
-  
   /*Source: http://www.bootply.com/peFUdnwOpZ
   $('.closeall').click(function(){
 	  $('.panel-collapse.in')

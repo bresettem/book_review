@@ -1,0 +1,17 @@
+<% @reviews.each do |r| %>
+  <div class="well well-sm">  
+    <div class="pull-left">
+      <p class="label label-default"><%= r.user.user_name %></p>
+      <p class="label label-success"><%= time_ago_in_words(r.updated_at) %> ago</p>
+			<% if user_signed_in? && current_owner(a=r) %>
+      	<%= link_to "Edit", edit_book_review_path(@book, r), class: 'label label-primary' %> 
+      	<%= link_to "Delete", [@book, r], class: 'label label-danger', method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+      <% end %>
+    </div>
+    <div class="clear"></div>
+    <p class="review-readmore"><%= r.review %></p>
+  </div>
+<% end %>
+<div class="text-center">
+	<%= will_paginate @reviews %> 
+</div>
