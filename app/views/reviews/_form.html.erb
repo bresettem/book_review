@@ -1,8 +1,11 @@
 <%= form_for ([@book, @review]) do |f| %>
   <div class="form-group">
-    <%= f.label :review, style: 'color:white' %>
+    <%= f.label :review, class: 'white' %>
     <%= f.text_area :review, class: 'form-control' %>
   </div>
   <%= f.submit "Submit", class: 'btn btn-primary' %>
+  <% if @book.reviews.count > @per_page %>
+    <%= link_to "All book reviews", book_reviews_path(@book, @review), class: 'btn btn-primary pull-right' %>
+  <% end %>
 <% end %>
 <br />

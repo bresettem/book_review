@@ -3,9 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-8 col-xs-offset-2 well well-sm">
-          <div class="media pull-left">   
-            <div class="media-left">
-              <%= link_to (image_tag result.image_link, class: 'media-object'), result.info_link, :target => '_blank' %><br />
+          <div class="media pull-left">
+            <div class-"media-left">
+              <%= link_to (image_tag result.image_link, class: 'img-thumbnail'), result.info_link, :target => '_blank' %><br />
               <%= f.submit "Add Book", class: 'btn btn-success middle' %>
             </div>
           </div>
@@ -17,7 +17,7 @@
               <li><%= page_count(result) %> </li>
               <li>Published on <%= published_date(result) %></li>
               <li><%= isbn(result) %></li>
-            </ul>
+            </ul><br />
             <article><%= description(result) %></article>
           </div>
         </div>

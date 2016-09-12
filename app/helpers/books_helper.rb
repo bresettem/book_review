@@ -44,17 +44,15 @@ module BooksHelper
   end
   def authors(a)
     if a.authors.present?
-      content_tag(:p, 'By: ' + a.authors, class: 'wrap-text')
+      content_tag(:p, 'By: ' + truncate(a.authors, length: 40), class: 'wrap-text')
     end
   end
   def description(result)
     result.description ? result.description : "No description is available"
   end
-  
   def isbn(result) 
-    (result.isbn ? result.isbn : "No ISBN is Available")
+    result.isbn ? result.isbn : "No ISBN is available"
   end
-  
   def missing_image(a)
     if a.image_link.blank?
       link_to (image_tag "missing.svg", alt: 'Missing Image', class: 'img-thumbnail missing-book caption-img'), book_path(a)
@@ -62,12 +60,7 @@ module BooksHelper
     	link_to (image_tag a.image_link.url(:medium), alt: a.title, class: 'img-thumbnail caption-img'), book_path(a)
     end
   end
-  
-  def show_missing_image(book)
-    if book.image_link.blank?
-      link_to (image_tag "missing.svg", class: 'img-thumbnail missing-book caption-img'), book.info_link, :target => '_blank'
-    else
-      link_to (image_tag book.image_link.url(:medium), alt: 'Missing image', class: 'img-thumbnail first-image caption-img'), book.info_link, :target => '_blank'
-    end
+  def current_owner(a)
+    a.user.id == current_user.id
   end
 end

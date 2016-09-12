@@ -39,8 +39,9 @@ class BooksController < ApplicationController
 		books = @book
 		featured_books(books)
 		@review = Review.new
+		@reviews = @book.reviews.paginate(:page => params[:page], :per_page => @per_page).order('created_at DESC')
 	end
-	
+
 	def edit
 	end
 	

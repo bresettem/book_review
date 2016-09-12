@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   before_action :owned_review, only: [:edit, :update, :destroy]
   
   def index
-    @reviews = @book.reviews.all.order('created_at desc')
+    @reviews = @book.reviews.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
   end
   
   def new
@@ -64,8 +64,8 @@ class ReviewsController < ApplicationController
     end
     
     def owned_review
-      unless current_user == @book.user
-        flash[:danger] = "Error! The book does not belong to you!"
+      unless current_user == @review.user
+        flash[:danger] = "Error! The review does not belong to you!"
         redirect_to books_path(@book)
       end
     end
