@@ -4,9 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  get '/search' => 'books#search'
-  get '/authors' => 'authors#index'
-  get 'categories' => 'categories#index'
+  get '/search' => 'books#search'    
   get '/faq' => 'faq#index'
   
   resources :books, except: :new do 

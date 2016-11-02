@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    alphabetical_paginate (2.3.2)
     arel (6.0.3)
     autoprefixer-rails (6.4.0)
       execjs
@@ -225,6 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alphabetical_paginate (= 2.3.2)
   aws-sdk (= 2.5.0)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)

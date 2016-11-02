@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Used for alphabetizing authors and genres
+gem 'alphabetical_paginate', '2.3.2'
 # Used for storing environment variables
 gem 'figaro', '1.1.1'
 # Used for storing images
