@@ -83,11 +83,11 @@ class BooksController < ApplicationController
 		end
 		
 		def featured_books(books)
-			# Is an Active Record query where it finds all ids in the table except for the id of the book that we are already
-			# on in the show page. It then only shows a select number of random books to display.
+			# Sets the first and last book id found minus the book id that is already shown. 
+			# The ids are then randomized and only a certain number of books are returned.
 			min = Book.first
 			max = Book.last
-			num_of_books = 4
+			num_of_books = 6 # 3 Books per row.
 			@random = Book.where(id: [min..max]).where.not(id: books).shuffle.take(num_of_books)
 		end
 end
