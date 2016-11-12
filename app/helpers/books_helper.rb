@@ -2,9 +2,7 @@ module BooksHelper
   def no_books(books)
     if books === []
       content_tag(:div, "Error! No books have been added.", class: 'alert alert-danger')
-    else
-		  content_tag(:div, content_tag(:p, "There have been " + pluralize(number_with_delimiter(@books_count), "book") + " added with " + pluralize(number_with_delimiter(@pages_count), "page") + "."), class: 'alert alert-info')
-    end 
+    end
   end
   
   def average_ratings_count(result)
@@ -47,12 +45,15 @@ module BooksHelper
       content_tag(:p, 'By: ' + truncate(a.authors, length: 40), class: 'wrap-text')
     end
   end
+  
   def description(result)
     result.description ? result.description : "No description is available"
   end
+  
   def isbn(result) 
     result.isbn ? result.isbn : "No ISBN is available"
   end
+  
   def missing_image(a)
     if a.image_link.blank?
       link_to (image_tag "missing.svg", alt: 'Missing Image', class: 'img-thumbnail missing-book caption-img'), book_path(a)
@@ -60,6 +61,7 @@ module BooksHelper
     	link_to (image_tag a.image_link.url(:medium), alt: a.title, class: 'img-thumbnail caption-img'), book_path(a)
     end
   end
+  
   def current_owner(a)
     a.user.id == current_user.id
   end

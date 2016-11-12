@@ -4,9 +4,7 @@ class BooksController < ApplicationController
 	before_action :owned_book, only: [:edit, :update, :destroy]
 	
   def index
-		@books = Book.paginate(:page => params[:page], :per_page => 35).order('created_at DESC')
-		@pages_count = Book.sum(:page_count)
-		@books_count = Book.count
+		@books = Book.paginate(:page => params[:page], :per_page => 35).order('created_at DESC') # 7 books per row
   end
   
   def search
