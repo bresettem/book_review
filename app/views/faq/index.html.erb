@@ -134,22 +134,41 @@
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Specifics of this website.
+                Gemfile
               </a>
             </h4>
           </div>
           <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
               <ol>
+                <li><%= link_to "AWS SDK 2.5.0", "https://github.com/aws/aws-sdk-ruby", target: '_blank' %></li>
               	<li><%= link_to "Bootstrap-Sass 3.3.6", "https://github.com/twbs/bootstrap-sass", target: '_blank' %></li>
+              	<li><%= link_to "Bootstrap-will_paginate 0.0.10", "https://github.com/yrgoldteeth/bootstrap-will_paginate", target: '_blank' %></li>
+              	<li><%= link_to "Byebug 9.0.6", "https://github.com/deivid-rodriguez/byebug", target: '_blank' %></li>
               	<li><%= link_to "Devise 4.0.1", "https://github.com/plataformatec/devise", target: '_blank' %></li>
+              	<li><%= link_to "Faker 1.6.5", "https://github.com/stympy/faker", target: '_blank' %></li>
+              	<li><%= link_to "Figaro 1.1.1", "https://github.com/laserlemon/figaro", target: '_blank' %></li>
               	<li><%= link_to "Font-Awesome-Rails 4.6.2.0", "https://github.com/FortAwesome/Font-Awesome", target: '_blank' %></li>
               	<li><%= link_to "Git 2.7.3", "https://git-scm.com/", target: '_blank' %></li>
               	<li><%= link_to "Googlebooks 0.0.9", "https://github.com/zeantsoi/GoogleBooks", target: '_blank' %></li>
+              	<li><%= link_to "Jbuilder 2.6.0", "https://github.com/rails/jbuilder", target: '_blank' %></li>
+              	<li><%= link_to "Jquery-rails 4.2.1", "https://github.com/rails/jquery-rails", target: '_blank' %></li>
               	<li><%= link_to "Paperclip 4.3.6", "https://github.com/thoughtbot/paperclip", target: '_blank' %></li>
-              	<li><%= link_to "Rails 4.2.5.2", "https://github.com/rails/rails", target: '_blank' %></li>
+              	<li><%= link_to "Pg 0.19", "http://bitbucket.org/ged/ruby-pg/", target: '_blank' %></li>
+                <li><%= link_to "Puma 3.3.0", "https://github.com/puma/puma", target: '_blank' %></li>
+                <li><%= link_to "Rails 4.2.5.2", "https://github.com/rails/rails", target: '_blank' %></li>
+              	<li><%= link_to "Rails_12factor 0.0.3", "https://github.com/heroku/rails_12factor", target: '_blank' %></li>
+              	<li><%= link_to "Rails_real_favicon 0.0.5", "https://github.com/RealFaviconGenerator/rails_real_favicon", target: '_blank' %></li>
               	<li><%= link_to "Readmorejs-Rails 0.0.12", "https://github.com/seankay/readmorejs-rails", target: '_blank' %></li>
-              	<li><%= link_to "Ruby 2.3.0p0", "https://github.com/ruby/ruby", target: '_blank' %></li>
+              	<li><%= link_to "Ruby 2.3.0p2", "https://github.com/ruby/ruby", target: '_blank' %></li>
+              	<li><%= link_to "Sass-rails 5.0.6", "https://github.com/rails/sass-rails", target: '_blank' %></li>
+              	<li><%= link_to "Seed_dump 3.2.4", "https://github.com/rroblak/seed_dump", target: '_blank' %></li>
+              	<li><%= link_to "Spring 2.0.0", "https://github.com/rails/spring", target: '_blank' %></li>
+              	<li><%= link_to "Sqlite3 1.3.12", "https://github.com/sparklemotion/sqlite3-ruby", target: '_blank' %></li>
+              	<li><%= link_to "Turbolinks 5.0.1", "https://github.com/turbolinks/turbolinks", target: '_blank' %></li>
+              	<li><%= link_to "Uglifier 3.0.1", "https://github.com/lautis/uglifier", target: '_blank' %></li>
+              	<li><%= link_to "Web-console 2.3.0", "https://github.com/rails/web-console", target: '_blank' %></li>
+                <li><%= link_to "Will_paginate 3.1.0", "https://github.com/mislav/will_paginate", target: '_blank' %></li>
               </ol>
             </div>
           </div>
@@ -181,19 +200,21 @@
           <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
               <ol>
-                <li>For the Authors page:</li>
+                <li>To have an author's page to include, but are not limited to:</li>
                   <ol type="a">
-                    <li>To have only one author per line.</li>
-                    <li>To make the names clickable so that once clicked, will redirect to the author's page where it will display all the books that have been added by that particular author.</li>
+                    <li>One Author per line</li>
+                    <li>To have the author’s name clickable to show all books that the author has written</li>
+                    <li>Alphabetized by letter</li>
                   </ol>
-                <li>For the Categories page:</li>
+                <li>To have a genre's page to include, but are not limited to:</li>
                   <ol type="a">
-      	            <li>To make the categories clickable so that once clicked, will redirect to a page where it displays all books that have the same category.</li>
+      	            <li>To have the genre's clickable to show all books with that genre</li>
+      	            <li>Alphabetized by letter</li>
                   </ol>
                 <li>For the Search page:</li>
                   <ol type="a">
                     <li>The ability to add multiple books at the same time</li>
-                    <li>A filter including, but not limited to:</li>
+                    <li>A filter to include, but are not limited to:</li>
                       <ol type="i">
                         <li>Category</li>
                         <li>Author</li>
@@ -206,8 +227,8 @@
                   <li>A profile page for each user.</li>
                   <ol type="a">
                     <li>A page showing all books a user has added.</li>
-                    <li>Either select one or all of the users books to delete.</li>
-                    <li>Personal statistics on the user, including, but not limited to:
+                    <li>Either select one or all of the user's books to delete.</li>
+                    <li>Personal statistics on the user to include, but are not limited to:
                     <ol type="i">
                       <li>When the user joined</li>
                       <li>How many books they have added</li>
@@ -215,16 +236,16 @@
                     </ol>
                   </ol>
                 <li>A filter to show books who do and do not have a review</li>
-                <li>An advanced search function, including, but not limited to:</li>
+                <li>An advanced search function to include, but not limited to:</li>
                   <ol type="a">
                     <li>Only show free ebooks</li>
                     <li>Only show paid ebooks</li>
                     <li>Only show books that are downloadable</li>
                   </ol>
                 <li>When a user who is not logged in and tries to add a book it redirects to the homepage without adding the book. Fix it to where it adds the book whenever they sign in or create an account</li>
-                <li>A working "Reset Password" link</li>
+                <li>A link to reset the password</li>
                 <li>A contact form to send improvements or bugs</li>
-                <li>A confirmation page to make sure email during registration is a working email</li>
+                <li>A confirmation page to activate the user profile</li>
               </ol>
             </div>
           </div>
