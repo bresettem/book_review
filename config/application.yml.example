@@ -1,0 +1,9 @@
+secret_key_base: replace_with_new_secret_key_base
+API_KEY: replace_with_api_key
+
+# Used for Amazon's S3 image storage
+AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY: MeH/AWS_SECRET_ACCESS_KEY
+AWS_S3_BUCKET: AWS_S3_BUCKET
+S3_REGION: S3_REGION
+AWS_S3_HOST_NAME: AWS_S3_HOST_NAME
