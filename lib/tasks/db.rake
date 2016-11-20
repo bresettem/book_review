@@ -204,15 +204,19 @@ end
 				1|CRkowJ1D5OAC|The Non-Designer&#39;s Design Book|9780132103923|4158
 =end
 def add_book(caption_length, num_books)
-	if num_books == 0
+	@user_id = User.ids.sample # Returns a random user_id
+	if @user_id.blank?
+		puts "Error! No users have been added. Please add a user account before adding books."
+	elsif num_books == 0
 		puts "No Books added."
 	else
 		file_exists?
 		sum = 0
 		num_books_to_search = 1 # Maximum number to search is 40 books per search.
-		new_books = old_books = Set.new
+		new_books = Set.new 
+		old_books = Set.new
+		book_id = Set.new
 		book_id = Book.all.pluck(:books_id) # Get all books_id to compare to books in the database
-		
 		Benchmark.benchmark(CAPTION, caption_length, FORMAT, "total:") do |x|
 			books_faker = x.report("books_faker") { 
 				Book.transaction do
@@ -220,13 +224,17 @@ def add_book(caption_length, num_books)
 						random = Faker::Lorem.word
 						search = GoogleBooks.search(random, count: num_books_to_search, api_key: ENV['API_KEY'])
 						search.each do |s|
-							book_id.each do |b| # Compares each book_id to see if the book has already been added.
-								if s.id.eql?(b)
-									#puts "#{b} = #{s.id}" Book has already been added i.e a old book.
-									old_books << s
-								else
-									#puts "#{b} != #{s.id}" Book is not bee added ie. a new book.
-									new_books << s
+							if book_id.blank?
+								new_books << s
+							else
+								book_id.each do |b| # Compares each book_id to see if the book has already been added.
+									if s.id.eql?(b)
+										#puts "#{b} = #{s.id}" Book has already been added i.e a old book.
+										old_books << s
+									else
+										# puts "#{b} != #{s.id}" Book is not bee added ie. a new book.
+										new_books << s
+									end
 								end
 							end
 						end
@@ -235,7 +243,6 @@ def add_book(caption_length, num_books)
 			}
 			new_books = new_books - old_books;
 			books_create = x.report("books_create") {
-				@user_id = User.ids.sample # Returns a random user_id
 				new_books.each do |result|
 					Book.create(
 						books_id: result.id,
@@ -265,10 +272,13 @@ def add_book(caption_length, num_books)
 					else
 						index = 0
 						f.puts "new_books: #{new_books.count}/#{sum}"
-						f.puts "#|books_id|title|isbn|user_id"
+						f.puts "#|books_id|title|isbn|created_at|user_id"
 						new_books.each do |a|
 							index += 1
-							f.puts "#{index}|#{a.id}|#{truncate(a.title)}|#{a.isbn}|#{@user_id}"
+							b = Book.find_by_books_id(a.id)
+							b_created = b.created_at.strftime('%m/%d/%Y %I:%M:%S %p')
+							b_user_id = b.user_id
+							f.puts "#{index}|#{a.id}|#{truncate(a.title)}|#{a.isbn}|#{b_created}|#{b_user_id}"
 						end
 					end
 				end
@@ -292,6 +302,7 @@ def add_book(caption_length, num_books)
 			@book_time = books_faker + books_create + books_write
 			[@book_time]
 		end
+		puts "Error! No users have been added. Please add a user account before adding books." if @user_id.nil?
 		puts "New books: #{new_books.count}. Old books: #{old_books.count}. Total books searched #{sum}."
 		puts "See new_books.txt and/or old_books.txt to see a list in db/seed_files."
 	end
@@ -330,14 +341,18 @@ end
 				165,3715,Cupiditate consectetur quisquam. Laudantium consectetur sapiente commodi perspiciatis. Veritatis eos dignissimos in. Delectus non amet qui qui non est. Eligendi fugit blanditiis. Est consequatur sunt voluptatem.
 =end
 def add_review(caption_length, num_reviews)
-	if num_reviews == 0
+	book_id = Book.ids.sample;
+	if book_id.blank?
+		puts "Error! No reviews have been added. Please add a book before adding reviews."
+	elsif num_reviews == 0
 		puts "No Reviews added."
 	else
 		file_exists?
+		add_reviews = Set.new
 		book_id = Book.ids.sample
 		book = Book.find_by_id(book_id)
 		start_review = book.reviews.count
-		add_reviews = Set.new
+		
 		Benchmark.benchmark(CAPTION, caption_length, FORMAT, "total:") do |x|
 			review_faker = x.report("review_faker:") {
 				num_reviews.times do 
