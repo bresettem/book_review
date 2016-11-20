@@ -1,7 +1,7 @@
 =begin
- Purpose: To be able to seed multiple users, books, and reviews at the same 
+ Purpose: To be able to seed multiple users, books, and reviews at the same.
  time into the database while keeping track of how long it takes.
- Author: Maathew Bresette
+ Author: Matthew Bresette
 =end
 
 include Benchmark
@@ -11,28 +11,28 @@ caption_length = 15
 namespace :db do
 	namespace :seed do
 	
-	# Method to call rake db:seed:users[x], x = some int variable
+	# Method to call rake db:seed:users[x], x = some Integer value
 	desc "Create new users based on Faker and outputs results to db/seed_files/users.txt"
 	task :users, [:num_users] => [:environment] do |t, args|
 		num_users = args[:num_users].to_i # 
 		add_user(caption_length, num_users)
 	end
 	
-	# Method to call rake db:seed:books[x],  x = some int variable
+	# Method to call rake db:seed:books[x],  x = some Integer value
 	desc "Create new books based on Faker and outputs results to db/seed_files/new_books.txt or old_books.txt"
 	task :books, [:num_books] => [:environment] do |t, args|
 		num_books = args[:num_books].to_i
 		add_book(caption_length, num_books)
 	end
 	
-	# Method to call rake db:seed:reviews[x], x = some int variable
+	# Method to call rake db:seed:reviews[x], x = some Integer value
 	desc "Create new reviews on Faker and outputs results to db/seed_files/reviews.txt"
 	task :reviews, [:num_reviews] => [:environment] do |t, args|
 		num_reviews = args[:num_reviews].to_i
 		add_review(caption_length, num_reviews)
 	end
 	
-	# Method to call rake db:seed:all[x,y,z], x = y = z = some int variable
+	# Method to call rake db:seed:all[x,y,z], x = y = z = some Integer values
 	desc "Runs all create methods and outputs results to db/seed_files"
 	task :all, [:num_users, :num_books, :num_reviews] => [:environment] do |t, args|
 		num_users = args[:num_users].to_i
@@ -57,14 +57,14 @@ end
 	Creates db/seed_files used while seeding database unless the folder is already there
 	
 	Overview
-		1. Checks to see if the folder 'db/seed_files' exists
+		1. Checks to see if the folder 'db/seed_files' exists.
 		2. If the folder doesn't exist, then it creates the folder.
 		
 	Example
-		Folder does not exist
+		Folder does not exist.
 			Created folder 'db/seed_files'
-		Folder already exists
-			The function is not run
+		Folder already exists.
+			The function is not run.
 =end
 def file_exists?
 	directory_name = "db/seed_files"
@@ -73,8 +73,9 @@ def file_exists?
 		Dir.mkdir(directory_name)
 	end
 end
+
 =begin 
-	Generates a certain number of users based on the task argument.
+	Generates an amount of users based on the task argument.
 	
 	Parameters
 		num_users [Integer] - Number of users to generate. Uses a task argument. Defaults to 0.
@@ -86,14 +87,14 @@ end
 		3. User_faker - Generates random usernames, email, password, and last names and stores it in a hash. The randomness comes from Faker.
 		4. User_create - Takes the hash and inserts into the database
 		5. User_write - Writes the generated output to a file for testing purposes.
-		6. Outputs how many users were added and direct to the generated data.
+		6. Outputs how many users and directs to the generated data.
 	
 	Examples
 		Seeding a user that is either blank or 0.
 			rake db:seed:users OR rake db:seed:users[0]
 				No Users added.
 				
-		Seeding only one user
+		Seeding only one user.
 			rake db:seed:users[1] - num_users must be of Integer value otherwise it will default to 0.
 													user     system      total        real
 			user_faker        0.350000   0.020000   0.370000 (  0.375199)
@@ -162,24 +163,29 @@ def add_user(caption_length, num_users)
 end
 
 =begin 
-	Generates a certain number of books based on the task argument
+	Generates an amount of books based on the task argument.
 	
 	Parameters
 		num_books [Integer] - Number of books to generate. Task argument. Defaults to 0.
 		caption_length [Benchmark] - Required for Benchmark formatting
 		
 	Overview
-		1. Checks to make sure num_users is 0.
-		2. Creates folder if it doesn't already exist.
-		3. Books_faker - Generates a word and searches through GoogleBooks.
+		1. Checks to make sure if a user account is already added.
+		2. Checks to make sure num_books is 0.
+		3. Creates folder if it doesn't already exist.
+		4. Books_faker - Generates a word and searches through GoogleBooks.
 			a. Generates a random word from Faker.
-			b. Takes the randomized word and searches GoogleBooks. Each search can have the maximum number of 40 books per search. 
-			c. Takes what is returned from GoogleBooks and sorts them depending on if they are new or old books.
-		4. Books_create - Only adds the new books are added. 
-		5. Books_write-  Writes the generated output for the new and/or old books to a file.
-		6. Outputs how many new and old books were added as well as how many books were searched. Directs to the generated data.
+			b. Takes the randomized word and searches GoogleBooks. The largest number of books to search is 40. 
+			c. Takes the returned value from GoogleBooks and sorts them depending on if they are new or old books.
+		5. Books_create - Only adds the new books. 
+		6. Books_write - Writes the generated output for the new and/or old books to a file.
+		7. Outputs the book details for the new and old books as well as the total number of books searched.
 	
 	Examples
+		Seeding a book that has no user accounts added. Adding a book requires a user account to add.
+			rake db:seed:books[1]
+			Error! No users added. Please add a user account before adding books.
+			
 		Seeding a book that has a task argument blank or 0.
 			rake db:seed:books OR rake db:seed:books[0]
 				No Books added.
@@ -206,7 +212,7 @@ end
 def add_book(caption_length, num_books)
 	@user_id = User.ids.sample # Returns a random user_id
 	if @user_id.blank?
-		puts "Error! No users have been added. Please add a user account before adding books."
+		puts "Error! No users added. Please add a user account before adding books."
 	elsif num_books == 0
 		puts "No Books added."
 	else
@@ -302,27 +308,31 @@ def add_book(caption_length, num_books)
 			@book_time = books_faker + books_create + books_write
 			[@book_time]
 		end
-		puts "Error! No users have been added. Please add a user account before adding books." if @user_id.nil?
+		puts "Error! No users added. Please add a user account before adding books." if @user_id.nil?
 		puts "New books: #{new_books.count}. Old books: #{old_books.count}. Total books searched #{sum}."
 		puts "See new_books.txt and/or old_books.txt to see a list in db/seed_files."
 	end
 end
 =begin 
-	Generates a certain number of reviews based on a task argument.
+	Generates an amount of reviews based on a task argument.
 	
 	Parameters
 		num_reviews [Integer] - Number of reviews to generate. Uses a task argument. Defaults to 0.
 		caption_length [Benchmark] - Required for Benchmark formatting
 		
 	Overview
-		1. Checks to make sure reviews are being added.
-		2. Creates folder if it doesn't already exist.
-		3. Review_faker - Generates random reviews on a random book.
-		4. Review_create - Adds the review to the database.
-		5. Review:write - Writes the generated output for the reviews to a file.
-		6. Outputs how many reviews were added. Directs to the generated data.
+		1. Checks to make sure a book has already been added. 
+		2. Checks to make sure num_reviews is 0.
+		3. Creates folder if it doesn't already exist.
+		4. Review_faker - Generates random reviews on a random book.
+		5. Review_create - Adds the review to the database.
+		6. Review_write - Writes the generated output for the reviews to a file.
+		7. Outputs how many reviews added. Directs to the generated data.
 	
 	Examples
+		Seeding a review that has no books added. Books must exist before adding reviews.
+			rake db:seed:reviews[1]
+			Error! No reviews added. Please add a book before adding reviews.
 		Seeding a review that has a task argument of blank or 0.
 			rake db:seed:reviews OR rake db:seed:reviews[0]
 				No Reviews added.
@@ -343,7 +353,7 @@ end
 def add_review(caption_length, num_reviews)
 	book_id = Book.ids.sample;
 	if book_id.blank?
-		puts "Error! No reviews have been added. Please add a book before adding reviews."
+		puts "Error! No reviews added. Please add a book before adding reviews."
 	elsif num_reviews == 0
 		puts "No Reviews added."
 	else
@@ -395,7 +405,7 @@ end
 		caption_length [Benchmark] - Required for Benchmark formatting
 		
 	Overview
-		1. Checks to see if users, books, or reviews were ran
+		1. Checks to see if users, books, or reviews were run.
 		2. Outputs total time ran
 	
 	Examples
