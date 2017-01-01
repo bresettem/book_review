@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Use forperformance management system
+gem 'newrelic_rpm', '3.17.2.327'
 # Use for storing environment variables
 gem 'figaro', '1.1.1'
 # Use for storing images on production
