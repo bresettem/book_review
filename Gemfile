@@ -62,5 +62,5 @@ group :production do
   # Use for heroku server
   gem 'puma', '3.2.0'
   # Use for declaring the Ruby version for Heroku
-  ruby '2.3.0'
+  ruby '2.4.1'
 end
