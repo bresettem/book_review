@@ -56,7 +56,7 @@ module BooksHelper
   
   def missing_image(a)
     if a.image_link.blank?
-      link_to (image_tag "missing.svg", alt: 'Missing Image', class: 'img-thumbnail missing-book caption-img'), book_path(a)
+      link_to (image_tag "missing.svg", alt: 'Missing Images', class: 'img-thumbnail missing-book caption-img'), book_path(a)
     else
     	link_to (image_tag a.image_link.url(:medium), alt: a.title, class: 'img-thumbnail caption-img'), book_path(a)
     end
