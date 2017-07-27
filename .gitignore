@@ -34,3 +34,5 @@ db/seed_files/*
 
 # Ignore local testing file
 testing.rb
+# Ignore application configuration
+/config/application.yml

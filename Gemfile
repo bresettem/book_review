@@ -26,7 +26,7 @@ gem 'bootstrap-sass', '3.3.7'
 # Use for icons
 gem 'font-awesome-rails', '4.7.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.2'
+gem 'rails', '5.1.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -61,6 +61,18 @@ group :development, :test do
   gem 'spring-watcher-listen', '2.0.1'
   # Use for generating favicons
   gem 'rails_real_favicon', '0.0.7'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.2.0'
+
+  # Remove the following if your app does not use Rails
+  gem 'capistrano-rails'
+
+  # Remove the following if your server does not use RVM
+  gem 'capistrano-rvm'
 end
 
 # Use postgresql as the database for production
