@@ -18,7 +18,7 @@ Rails.application.configure do
   
       config.cache_store = :memory_store
       config.public_file_server.headers = {
-        'Cache-Control' => 'public, max-age=172800'
+        'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
       }
     else
       config.action_controller.perform_caching = false
@@ -46,7 +46,8 @@ Rails.application.configure do
   config.assets.quiet = false
 
   # Suppresses "cannot render console"
-  config.web_console.whitelisted_ips = '127.0.0.1'
+  #config.web_console.whitelisted_ips = '127.0.0.1'
+  config.web_console.whiny_requests = false
   
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
