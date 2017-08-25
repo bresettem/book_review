@@ -71,8 +71,8 @@ group :development do
   # Remove the following if your app does not use Rails
   gem 'capistrano-rails'
 
-  # Remove the following if your server does not use RVM
-  gem 'capistrano-rvm'
+  # Remove the following if your server does not use RBENV
+  gem 'capistrano-rbenv'
 end
 
 # Use postgresql as the database for production
