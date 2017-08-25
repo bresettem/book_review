@@ -56,7 +56,7 @@ server "book.mbresette.com",
   roles: %w{web app},
   ssh_options: {
     user: "admin", # overrides user setting above
-    keys: %w(/var/www/.ssh/id_rsa),
+    keys: %w(/home/admin/.ssh/id_rsa),
     forward_agent: false,
     auth_methods: %w(publickey password)
 #     # password: "please use keys"

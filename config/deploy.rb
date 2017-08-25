@@ -38,5 +38,5 @@ set :deploy_to, "/var/www/book_review"
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
-# Setting RVM ruby version
-set :rbenv_ruby_version, '2.4.1'
+# Setting RBENV ruby version
+set :rbenv_ruby, '2.4.1'
