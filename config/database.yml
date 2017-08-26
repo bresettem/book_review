@@ -23,6 +23,8 @@ default: &default
   pool: 5
   template: template0
   host: localhost
+  username: admin
+  password: Hello12#4
 
 development:
   <<: *default
