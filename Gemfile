@@ -39,6 +39,8 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks', '5.0.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.7.0'
+# Use pg as the database
+gem 'pg'
 # Use Redis adapter to run Action Cable in production
 #gem 'redis', '3.3.3'
 #Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -51,8 +53,6 @@ group :development, :test do
   gem 'capybara', '2.14.4'
   # WebDriver is a tool for writing automated tests of websites. It aims to mimic the behaviour of a real user, and as such interacts with the HTML of the application.
   gem 'selenium-webdriver', '3.4.4'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '3.5.1'
   gem 'listen', '3.1.5'
@@ -77,8 +77,6 @@ end
 
 # Use postgresql as the database for production
 group :production do
-  # Use for heroku server
-  gem 'pg'
   # Use for rails logging
   gem 'rails_12factor'
   # Use for heroku server
