@@ -61,6 +61,8 @@ group :development, :test do
   gem 'spring-watcher-listen', '2.0.1'
   # Use for generating favicons
   gem 'rails_real_favicon', '0.0.7'
+  # Listens to file modifications and notifies you about the changes. Works everywhere!
+  gem 'listen'
 end
 
 group :development do
