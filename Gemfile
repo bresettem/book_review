@@ -68,6 +68,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
   gem 'capistrano-secrets-yml', '1.0.0'
+  gem 'capistrano-postgresql', '4.2.1'
   # Remove the following if your app does not use Rails
   gem 'capistrano-rails'
 
