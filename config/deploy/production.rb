@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
+server 'books.mbresette.com', user: 'admin', roles: %w{app web db}
 
 # role-based syntax
 # ==================
@@ -20,10 +20,10 @@
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-role :app, %w{admin@book.mbresette.com}
-role :web, %w{admin@book.mbresette.com}
-role :db,  %w{admin@book.mbresette.com}
 
+role :app, %w{admin@books.mbresette.com}
+role :web, %w{admin@books.mbresette.com}
+role :db,  %w{admin@books.mbresette.com}
 
 # Configuration
 # =============
@@ -51,7 +51,7 @@ role :db,  %w{admin@book.mbresette.com}
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server "book.mbresette.com",
+server "books.mbresette.com",
   user: "admin",
   roles: %w{web app},
   ssh_options: {

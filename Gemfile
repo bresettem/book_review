@@ -61,15 +61,13 @@ group :development, :test do
   gem 'spring-watcher-listen', '2.0.1'
   # Use for generating favicons
   gem 'rails_real_favicon', '0.0.7'
-  # Listens to file modifications and notifies you about the changes. Works everywhere!
-  gem 'listen'
 end
 
 group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '>= 0.2.0'
-
+  gem 'capistrano-passenger'
+  gem 'capistrano-secrets-yml', '1.0.0'
   # Remove the following if your app does not use Rails
   gem 'capistrano-rails'
 
