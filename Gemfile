@@ -67,8 +67,8 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-secrets-yml', '1.0.0'
   gem 'capistrano-postgresql', '4.2.1'
-  # Remove the following if your app does not use Rails
   gem 'capistrano-rails'
+  gem 'capistrano-rails-collection', '0.1.0'
 
   # Remove the following if your server does not use RBENV
   gem 'capistrano-rbenv'
