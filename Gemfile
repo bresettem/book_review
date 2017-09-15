@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 gem 'newrelic_rpm', '4.2.0.334'
 # Use for storing environment variables
 gem 'figaro', '1.1.1'
-# Use for storing images on production
-gem 'aws-sdk', '2.10.17'
 # Use to dump seeds
 gem 'seed_dump', '3.2.4'
 # Use for generating fake data for books, reviews, and users
