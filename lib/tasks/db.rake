@@ -4,9 +4,12 @@
  Author: Matthew Bresette
 =end
 
+require 'set'
+require 'benchmark'
+require 'action_view'
 include Benchmark
 include ActionView::Helpers::TextHelper
-require 'set'
+
 caption_length = 15
 namespace :db do
 	namespace :seed do
