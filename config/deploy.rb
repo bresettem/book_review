@@ -8,7 +8,7 @@ set :repo_url, "git@github.com:bresettem/book_review.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/book_review"
+set :deploy_to, "/var/www/book_review"
 set :branch, 'master'
 
 # Default value for :format is :airbrussh.
@@ -28,7 +28,7 @@ set :linked_files, %w{config/application.yml}
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'db/seed_files')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -41,3 +41,6 @@ set :keep_releases, 5
 
 # Setting RBENV ruby version
 set :rbenv_ruby, '2.4.1'
+
+# Load custom seed file
+load 'lib/tasks/db.rake'
