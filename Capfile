@@ -36,6 +36,7 @@ require "capistrano/passenger"
 require "capistrano/secrets_yml"
 require "capistrano/postgresql"
 require "capistrano/rails/collection"
+require "capistrano/rake"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }

@@ -69,7 +69,8 @@ group :development do
   gem 'capistrano-postgresql', '4.2.1'
   gem 'capistrano-rails'
   gem 'capistrano-rails-collection', '0.1.0'
-
+  gem 'capistrano-rake'
+  
   # Remove the following if your server does not use RBENV
   gem 'capistrano-rbenv'
 end
