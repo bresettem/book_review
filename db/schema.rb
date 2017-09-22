@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160522032248) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string "books_id"
     t.string "title"
@@ -32,13 +35,13 @@ ActiveRecord::Schema.define(version: 20160522032248) do
     t.datetime "image_link_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
+    t.bigint "user_id"
+    t.bigint "book_id"
     t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,4 +70,7 @@ ActiveRecord::Schema.define(version: 20160522032248) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "books", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end

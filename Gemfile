@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 gem 'newrelic_rpm', '4.2.0.334'
 # Use for storing environment variables
 gem 'figaro', '1.1.1'
-# Use for storing images on production
-gem 'aws-sdk', '2.10.17'
 # Use to dump seeds
 gem 'seed_dump', '3.2.4'
 # Use for generating fake data for books, reviews, and users
@@ -39,6 +37,8 @@ gem 'jquery-rails', '4.3.1'
 gem 'turbolinks', '5.0.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.7.0'
+# Use pg as the database
+gem 'pg'
 # Use Redis adapter to run Action Cable in production
 #gem 'redis', '3.3.3'
 #Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -51,8 +51,6 @@ group :development, :test do
   gem 'capybara', '2.14.4'
   # WebDriver is a tool for writing automated tests of websites. It aims to mimic the behaviour of a real user, and as such interacts with the HTML of the application.
   gem 'selenium-webdriver', '3.4.4'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '3.5.1'
   gem 'listen', '3.1.5'
@@ -63,10 +61,22 @@ group :development, :test do
   gem 'rails_real_favicon', '0.0.7'
 end
 
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+  gem 'capistrano-secrets-yml', '1.0.0'
+  gem 'capistrano-postgresql', '4.2.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-collection', '0.1.0'
+  gem 'capistrano-rake'
+  
+  # Remove the following if your server does not use RBENV
+  gem 'capistrano-rbenv'
+end
+
 # Use postgresql as the database for production
 group :production do
-  # Use for heroku server
-  gem 'pg'
   # Use for rails logging
   gem 'rails_12factor'
   # Use for heroku server
